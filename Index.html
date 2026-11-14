@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário ACS - Banca IVIN | Português, Informática e Específicas</title>
+    <style>
+        :root {
+            --primary: #0d6efd;
+            --primary-dark: #0a58ca;
+            --success: #198754;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --bg: #f0f4f8;
+            --card: #ffffff;
+            --text: #212529;
+            --muted: #6c757d;
+            --border: #dee2e6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #e8f0fe 0%, #f0f4f8 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0d6efd, #0a58ca);
+            color: white;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 3rem;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 0.7rem 1.3rem;
+            border: none;
+            border-radius: 50px;
+            background: white;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .score-bar {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .score-item {
+            text-align: center;
+        }
+
+        .score-item .label {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .score-item .value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-card {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 1.4rem 1.5rem;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            border-left: 5px solid var(--primary);
+            transition: box-shadow 0.2s;
+        }
+
+        .question-card:hover {
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+        }
+
+        .question-card.answered-correct {
+            border-left-color: var(--success);
+        }
+
+        .question-card.answered-wrong {
+            border-left-color: var(--danger);
+        }
+
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.9rem;
+            gap: 0.75rem;
+        }
+
+        .q-number {
+            background: var(--primary);
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .q-subject {
+            font-size: 0.78rem;
+            color: var(--muted);
+            background: #e9ecef;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+        }
+
+        .q-text {
+            font-size: 1.05rem;
+            font-weight: 500;
+            margin-bottom: 1.1rem;
+            color: #1a1a1a;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.85rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #fafbfc;
+        }
+
+        .option:hover:not(.disabled) {
+            border-color: var(--primary);
+            background: #f0f7ff;
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background: #e7f1ff;
+        }
+
+        .option.correct {
+            border-color: var(--success);
+            background: #d1e7dd;
+        }
+
+        .option.wrong {
+            border-color: var(--danger);
+            background: #f8d7da;
+        }
+
+        .option.disabled {
+            cursor: default;
+            opacity: 0.85;
+        }
+
+        .option input {
+            margin-top: 3px;
+            accent-color: var(--primary);
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .option label {
+            cursor: pointer;
+            flex: 1;
+            font-size: 0.97rem;
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .feedback.correct {
+            background: #d1e7dd;
+            color: #0f5132;
+            border: 1px solid #badbcc;
+        }
+
+        .feedback.wrong {
+            background: #f8d7da;
+            color: #842029;
+            border: 1px solid #f5c2c7;
+        }
+
+        .actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.6rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #157347;
+        }
+
+        .result-box {
+            display: none;
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            margin-top: 1.5rem;
+        }
+
+        .result-box.show {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .result-box h2 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-score {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        .result-message {
+            font-size: 1.1rem;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.3rem; }
+            .q-text { font-size: 1rem; }
+            .score-bar { justify-content: center; gap: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Questionário ACS — Banca IVIN</h1>
+        <p>Português • Informática • Conhecimentos Específicos</p>
+    </header>
+
+    <div class="container">
+        <!-- Score Bar -->
+        <div class="score-bar">
+            <div class="score-item">
+                <div class="label">Respondidas</div>
+                <div class="value" id="answered">0</div>
+            </div>
+            <div class="score-item">
+                <div class="label">Acertos</div>
+                <div class="value" id="correct" style="color: var(--success)">0</div>
+            </div>
+            <div class="score-item">
+                <div class="label">Erros</div>
+                <div class="value" id="wrong" style="color: var(--danger)">0</div>
+            </div>
+            <div class="score-item">
+                <div class="label">Aproveitamento</div>
+                <div class="value" id="percent">0%</div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="portugues">Português (10)</button>
+            <button class="tab-btn" data-tab="informatica">Informática (10)</button>
+            <button class="tab-btn" data-tab="especificas">Específicas ACS (10)</button>
+        </div>
+
+        <!-- PORTUGUÊS -->
+        <section id="portugues" class="section active">
+            <div class="question-card" data-q="p1" data-answer="c">
+                <div class="q-header">
+                    <span class="q-number">01</span>
+                    <span class="q-subject">Interpretação de Texto</span>
+                </div>
+                <div class="q-text">
+                    “O Agente Comunitário de Saúde é o profissional que faz a ponte entre a comunidade e o serviço de saúde.”  
+                    Nesse trecho, a expressão “faz a ponte” tem sentido de:
+                </div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="p1" id="p1a" value="a"><label for="p1a">A) Constrói uma estrutura física entre dois pontos.</label></div>
+                    <div class="option"><input type="radio" name="p1" id="p1b" value="b"><label for="p1b">B) Atua apenas em áreas isoladas.</label></div>
+                    <div class="option"><input type="radio" name="p1" id="p1c" value="c"><label for="p1c">C) Estabelece a ligação e a comunicação entre a população e a unidade de saúde.</label></div>
+                    <div class="option"><input type="radio" name="p1" id="p1d" value="d"><label for="p1d">D) Substitui o médico nas visitas domiciliares.</label></div>
+                    <div class="option"><input type="radio" name="p1" id="p1e" value="e"><label for="p1e">E) Trabalha exclusivamente com transporte de pacientes.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="p2" data-answer="b">
+                <div class="q-header">
+                    <span class="q-number">02</span>
+                    <span class="q-subject">Ortografia</span>
+                </div>
+                <div class="q-text">Assinale a alternativa em que todas as palavras estão grafadas corretamente:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="p2" id="p2a" value="a"><label for="p2a">A) excessão – excesso – excessivo</label></div>
+                    <div class="option"><input type="radio" name="p2" id="p2b" value="b"><label for="p2b">B) exceção – excesso – excessivo</label></div>
+                    <div class="option"><input type="radio" name="p2" id="p2c" value="c"><label for="p2c">C) excessão – escesso – excessivo</label></div>
+                    <div class="option"><input type="radio" name="p2" id="p2d" value="d"><label for="p2d">D) exceção – escesso – excessivo</label></div>
+                    <div class="option"><input type="radio" name="p2" id="p2e" value="e"><label for="p2e">E) excessão – excesso – escessivo</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="p3" data-answer="a">
+                <div class="q-header">
+                    <span class="q-number">03</span>
+                    <span class="q-subject">Crase</span>
+                </div>
+                <div class="q-text">Assinale a frase em que o uso da crase está <strong>correto</strong>:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="p3" id="p3a" value="a"><label for="p3a">A) O ACS deve ir à casa das famílias cadastradas regularmente.</label></div>
+                    <div class="option"><input type="radio" name="p3" id="p3b" value="b"><label for="p3b">B) O ACS deve ir a casa das famílias cadastradas regularmente.</label></div>
+                    <div class="option"><input type="radio" name="p3" id="p3c" value="c"><label for="p3c">C) O ACS deve ir à aquela casa das famílias cadastradas.</label></div>
+                    <div class="option"><input type="radio" name="p3" id="p3d" value="d"><label for="p3d">D) O ACS deve ir à uma casa das famílias cadastradas.</label></div>
+                    <div class="option"><input type="radio" name="p3" id="p3e" value="e"><label for="p3e">E) O ACS deve ir a à casa das famílias cadastradas.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="p4" data-answer="d">
+                <div class="q-header">
+                    <span class="q-number">04</span>
+                    <span class="q-subject">Concordância Verbal</span>
+                </div>
+                <div class="q-text">Assinale a alternativa que apresenta concordância verbal correta:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="p4" id="p4a" value="a"><label for="p4a">A) Já faz muitos anos que os ACS atuam nesse território.</label></div>
+                    <div class="option"><input type="radio" name="p4" id="p4b" value="b"><label for="p4b">B) Houveram diversas reuniões com a comunidade no último mês.</label></div>
+                    <div class="option"><input type="radio" name="p4" id="p4c" value="c"><label for="p4c">C) Existe muitas famílias ainda não cadastradas na área.</label></div>
+                    <div class="option"><input type="radio" name="p4" id="p4d" value="d"><label for="p4d">D) Faz muitos anos que os ACS atuam nesse território.</label></div>
+                    <div class="option"><input type="radio" name="p4" id="p4e" value="e"><label for="p4e">E) Havia muitas famílias ainda não cadastradas na área e existia dúvidas sobre o cadastro.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="p5" data-answer="c">
+                <div class="q-header">
+                    <span class="q-number">05</span>
+                    <span class="q-subject">Regência Verbal</span>
+                </div>
+                <div class="q-text">Assinale a alternativa em que a regência do verbo está correta:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="p5" id="p5a" value="a"><label for="p5a">A) O ACS assiste as famílias da sua microárea.</label></div>
+                    <div class="option"><input type="radio" name="p5" id="p5b" value="b"><label for="p5b">B) O ACS assiste às famílias da sua microárea.</label></div>
+                    <div class="option"><input type="radio" name="p5" id="p5c" value="c"><label for="p5c">C) O ACS assiste as famílias da sua microárea com dedicação.</label></div>
+                    <div class="option"><input type="radio" name="p5" id="p5d" value="d"><label for="p5d">D) O ACS assiste às famílias da sua microárea com dedicação.</label></div>
+                    <div class="option"><input type="radio" name="p5" id="p5e" value="e"><label for="p5e">E) O ACS assiste a famílias da sua microárea.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="p6" data-answer="b">
+                <div class="q-header">
+                    <span class="q-number">06</span>
+                    <span class="q-subject">Pontuação</span>
+                </div>
+                <div class="q-text">Assinale a alternativa em que a pontuação está correta:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="p6" id="p6a" value="a"><label for="p6a">A) O ACS visitou as casas, orientou as famílias e, registrou as informações no sistema.</label></div>
+                    <div class="option"><input type="radio" name="p6" id="p6b" value="b"><label for="p6b">B) O ACS visitou as casas, orientou as famílias e registrou as informações no sistema.</label></div>
+                    <div class="option"><input type="radio" name="p6" id="p6c" value="c"><label for="p6c">C) O ACS visitou as casas orientou as famílias e registrou as informações no sistema.</label></div>
+                    <div class="option"><input type="radio" name="p6" id="p6d" value="d"><label for="p6d">D) O ACS, visitou as casas, orientou as famílias, e registrou as informações no sistema.</label></div>
+                    <div class="option"><input type="radio" name="p6" id="p6e" value="e"><label for="p6e">E) O ACS visitou as casas; orientou as famílias; e registrou as informações no sistema.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="p7" data-answer="a">
+                <div class="q-header">
+                    <span class="q-number">07</span>
+                    <span class="q-subject">Classes de Palavras</span>
+                </div>
+                <div class="q-text">Na frase “O agente trabalhou muito naquele dia”, a palavra “muito” classifica-se como:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="p7" id="p7a" value="a"><label for="p7a">A) Advérbio</label></div>
+                    <div class="option"><input type="radio" name="p7" id="p7b" value="b"><label for="p7b">B) Adjetivo</label></div>
+                    <div class="option"><input type="radio" name="p7" id="p7c" value="c"><label for="p7c">C) Pronome</label></div>
+                    <div class="option"><input type="radio" name="p7" id="p7d" value="d"><label for="p7d">D) Preposição</label></div>
+                    <div class="option"><input type="radio" name="p7" id="p7e" value="e"><label for="p7e">E) Conjunção</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="p8" data-answer="e">
+                <div class="q-header">
+                    <span class="q-number">08</span>
+                    <span class="q-subject">Interpretação</span>
+                </div>
+                <div class="q-text">
+                    “A territorialização é o processo de reconhecimento do território e da população adstrita.”  
+                    De acordo com o trecho, territorialização significa:
+                </div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="p8" id="p8a" value="a"><label for="p8a">A) Divisão política do município.</label></div>
+                    <div class="option"><input type="radio" name="p8" id="p8b" value="b"><label for="p8b">B) Cadastro apenas de imóveis comerciais.</label></div>
+                    <div class="option"><input type="radio" name="p8" id="p8c" value="c"><label for="p8c">C) Processo de demissão de profissionais de saúde.</label></div>
+                    <div class="option"><input type="radio" name="p8" id="p8d" value="d"><label for="p8d">D) Construção de novas unidades de saúde.</label></div>
+                    <div class="option"><input type="radio" name="p8" id="p8e" value="e"><label for="p8e">E) Reconhecimento e delimitação da área e da população sob responsabilidade da equipe.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="p9" data-answer="c">
+                <div class="q-header">
+                    <span class="q-number">09</span>
+                    <span class="q-subject">Acentuação</span>
+                </div>
+                <div class="q-text">Assinale a alternativa em que todas as palavras estão acentuadas corretamente:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="p9" id="p9a" value="a"><label for="p9a">A) saude – familia – publico</label></div>
+                    <div class="option"><input type="radio" name="p9" id="p9b" value="b"><label for="p9b">B) saúde – família – publico</label></div>
+                    <div class="option"><input type="radio" name="p9" id="p9c" value="c"><label for="p9c">C) saúde – família – público</label></div>
+                    <div class="option"><input type="radio" name="p9" id="p9d" value="d"><label for="p9d">D) saude – família – público</label></div>
+                    <div class="option"><input type="radio" name="p9" id="p9e" value="e"><label for="p9e">E) saúde – familia – público</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="p10" data-answer="b">
+                <div class="q-header">
+                    <span class="q-number">10</span>
+                    <span class="q-subject">Sintaxe</span>
+                </div>
+                <div class="q-text">Na oração “Os agentes comunitários de saúde orientam as famílias”, o sujeito é:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="p10" id="p10a" value="a"><label for="p10a">A) as famílias</label></div>
+                    <div class="option"><input type="radio" name="p10" id="p10b" value="b"><label for="p10b">B) Os agentes comunitários de saúde</label></div>
+                    <div class="option"><input type="radio" name="p10" id="p10c" value="c"><label for="p10c">C) orientam</label></div>
+                    <div class="option"><input type="radio" name="p10" id="p10d" value="d"><label for="p10d">D) de saúde</label></div>
+                    <div class="option"><input type="radio" name="p10" id="p10e" value="e"><label for="p10e">E) comunitários</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </section>
+
+        <!-- INFORMÁTICA -->
+        <section id="informatica" class="section">
+            <div class="question-card" data-q="i1" data-answer="c">
+                <div class="q-header">
+                    <span class="q-number">01</span>
+                    <span class="q-subject">Sistema Operacional</span>
+                </div>
+                <div class="q-text">No Windows 10 ou 11, qual atalho de teclado é utilizado para copiar um arquivo ou texto selecionado?</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="i1" id="i1a" value="a"><label for="i1a">A) Ctrl + X</label></div>
+                    <div class="option"><input type="radio" name="i1" id="i1b" value="b"><label for="i1b">B) Ctrl + V</label></div>
+                    <div class="option"><input type="radio" name="i1" id="i1c" value="c"><label for="i1c">C) Ctrl + C</label></div>
+                    <div class="option"><input type="radio" name="i1" id="i1d" value="d"><label for="i1d">D) Ctrl + Z</label></div>
+                    <div class="option"><input type="radio" name="i1" id="i1e" value="e"><label for="i1e">E) Ctrl + A</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="i2" data-answer="b">
+                <div class="q-header">
+                    <span class="q-number">02</span>
+                    <span class="q-subject">Internet / Navegadores</span>
+                </div>
+                <div class="q-text">Qual dos programas abaixo é um navegador de internet (browser)?</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="i2" id="i2a" value="a"><label for="i2a">A) Microsoft Word</label></div>
+                    <div class="option"><input type="radio" name="i2" id="i2b" value="b"><label for="i2b">B) Google Chrome</label></div>
+                    <div class="option"><input type="radio" name="i2" id="i2c" value="c"><label for="i2c">C) Microsoft Excel</label></div>
+                    <div class="option"><input type="radio" name="i2" id="i2d" value="d"><label for="i2d">D) Adobe Reader</label></div>
+                    <div class="option"><input type="radio" name="i2" id="i2e" value="e"><label for="i2e">E) Windows Explorer</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="i3" data-answer="a">
+                <div class="q-header">
+                    <span class="q-number">03</span>
+                    <span class="q-subject">Editor de Texto</span>
+                </div>
+                <div class="q-text">No Microsoft Word, o atalho Ctrl + N é utilizado para:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="i3" id="i3a" value="a"><label for="i3a">A) Criar um novo documento em branco.</label></div>
+                    <div class="option"><input type="radio" name="i3" id="i3b" value="b"><label for="i3b">B) Salvar o documento atual.</label></div>
+                    <div class="option"><input type="radio" name="i3" id="i3c" value="c"><label for="i3c">C) Abrir um documento existente.</label></div>
+                    <div class="option"><input type="radio" name="i3" id="i3d" value="d"><label for="i3d">D) Imprimir o documento.</label></div>
+                    <div class="option"><input type="radio" name="i3" id="i3e" value="e"><label for="i3e">E) Fechar o documento.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="i4" data-answer="d">
+                <div class="q-header">
+                    <span class="q-number">04</span>
+                    <span class="q-subject">Planilhas</span>
+                </div>
+                <div class="q-text">No Microsoft Excel, a função =SOMA(A1:A10) realiza qual operação?</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="i4" id="i4a" value="a"><label for="i4a">A) Multiplica os valores das células A1 até A10.</label></div>
+                    <div class="option"><input type="radio" name="i4" id="i4b" value="b"><label for="i4b">B) Calcula a média dos valores de A1 até A10.</label></div>
+                    <div class="option"><input type="radio" name="i4" id="i4c" value="c"><label for="i4c">C) Conta quantas células possuem números de A1 até A10.</label></div>
+                    <div class="option"><input type="radio" name="i4" id="i4d" value="d"><label for="i4d">D) Soma os valores das células A1 até A10.</label></div>
+                    <div class="option"><input type="radio" name="i4" id="i4e" value="e"><label for="i4e">E) Divide o valor de A1 pelo valor de A10.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="i5" data-answer="c">
+                <div class="q-header">
+                    <span class="q-number">05</span>
+                    <span class="q-subject">Correio Eletrônico</span>
+                </div>
+                <div class="q-text">No e-mail, o campo “Cc” significa:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="i5" id="i5a" value="a"><label for="i5a">A) Cópia confidencial</label></div>
+                    <div class="option"><input type="radio" name="i5" id="i5b" value="b"><label for="i5b">B) Cópia cega</label></div>
+                    <div class="option"><input type="radio" name="i5" id="i5c" value="c"><label for="i5c">C) Cópia carbono (com cópia)</label></div>
+                    <div class="option"><input type="radio" name="i5" id="i5d" value="d"><label for="i5d">D) Conteúdo criptografado</label></div>
+                    <div class="option"><input type="radio" name="i5" id="i5e" value="e"><label for="i5e">E) Cópia cancelada</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="i6" data-answer="b">
+                <div class="q-header">
+                    <span class="q-number">06</span>
+                    <span class="q-subject">Segurança da Informação</span>
+                </div>
+                <div class="q-text">Qual das opções abaixo representa uma boa prática de segurança digital?</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="i6" id="i6a" value="a"><label for="i6a">A) Usar a mesma senha em todos os sistemas.</label></div>
+                    <div class="option"><input type="radio" name="i6" id="i6b" value="b"><label for="i6b">B) Manter o antivírus atualizado e não clicar em links suspeitos.</label></div>
+                    <div class="option"><input type="radio" name="i6" id="i6c" value="c"><label for="i6c">C) Compartilhar senhas com colegas de trabalho.</label></div>
+                    <div class="option"><input type="radio" name="i6" id="i6d" value="d"><label for="i6d">D) Desativar a verificação em duas etapas.</label></div>
+                    <div class="option"><input type="radio" name="i6" id="i6e" value="e"><label for="i6e">E) Abrir todos os anexos de e-mails desconhecidos.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="i7" data-answer="a">
+                <div class="q-header">
+                    <span class="q-number">07</span>
+                    <span class="q-subject">Hardware</span>
+                </div>
+                <div class="q-text">Qual dos dispositivos abaixo é considerado um dispositivo de entrada de dados?</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="i7" id="i7a" value="a"><label for="i7a">A) Teclado</label></div>
+                    <div class="option"><input type="radio" name="i7" id="i7b" value="b"><label for="i7b">B) Monitor</label></div>
+                    <div class="option"><input type="radio" name="i7" id="i7c" value="c"><label for="i7c">C) Impressora</label></div>
+                    <div class="option"><input type="radio" name="i7" id="i7d" value="d"><label for="i7d">D) Caixa de som</label></div>
+                    <div class="option"><input type="radio" name="i7" id="i7e" value="e"><label for="i7e">E) Projetor</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="i8" data-answer="e">
+                <div class="q-header">
+                    <span class="q-number">08</span>
+                    <span class="q-subject">Internet</span>
+                </div>
+                <div class="q-text">O que significa a sigla URL?</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="i8" id="i8a" value="a"><label for="i8a">A) Universal Resource Link</label></div>
+                    <div class="option"><input type="radio" name="i8" id="i8b" value="b"><label for="i8b">B) User Resource Locator</label></div>
+                    <div class="option"><input type="radio" name="i8" id="i8c" value="c"><label for="i8c">C) Uniform Resource Link</label></div>
+                    <div class="option"><input type="radio" name="i8" id="i8d" value="d"><label for="i8d">D) Universal Resource Locator</label></div>
+                    <div class="option"><input type="radio" name="i8" id="i8e" value="e"><label for="i8e">E) Uniform Resource Locator</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="i9" data-answer="c">
+                <div class="q-header">
+                    <span class="q-number">09</span>
+                    <span class="q-subject">Windows</span>
+                </div>
+                <div class="q-text">No Windows, a tecla de atalho Windows + E abre:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="i9" id="i9a" value="a"><label for="i9a">A) O Painel de Controle</label></div>
+                    <div class="option"><input type="radio" name="i9" id="i9b" value="b"><label for="i9b">B) As Configurações</label></div>
+                    <div class="option"><input type="radio" name="i9" id="i9c" value="c"><label for="i9c">C) O Explorador de Arquivos</label></div>
+                    <div class="option"><input type="radio" name="i9" id="i9d" value="d"><label for="i9d">D) O Gerenciador de Tarefas</label></div>
+                    <div class="option"><input type="radio" name="i9" id="i9e" value="e"><label for="i9e">E) A Calculadora</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="i10" data-answer="b">
+                <div class="q-header">
+                    <span class="q-number">10</span>
+                    <span class="q-subject">Software</span>
+                </div>
+                <div class="q-text">Qual dos programas abaixo faz parte do pacote Microsoft Office?</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="i10" id="i10a" value="a"><label for="i10a">A) Adobe Photoshop</label></div>
+                    <div class="option"><input type="radio" name="i10" id="i10b" value="b"><label for="i10b">B) Microsoft PowerPoint</label></div>
+                    <div class="option"><input type="radio" name="i10" id="i10c" value="c"><label for="i10c">C) Google Chrome</label></div>
+                    <div class="option"><input type="radio" name="i10" id="i10d" value="d"><label for="i10d">D) VLC Media Player</label></div>
+                    <div class="option"><input type="radio" name="i10" id="i10e" value="e"><label for="i10e">E) WinRAR</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </section>
+
+        <!-- ESPECÍFICAS ACS -->
+        <section id="especificas" class="section">
+            <div class="question-card" data-q="e1" data-answer="c">
+                <div class="q-header">
+                    <span class="q-number">01</span>
+                    <span class="q-subject">Lei 11.350/2006</span>
+                </div>
+                <div class="q-text">De acordo com a Lei nº 11.350/2006, o Agente Comunitário de Saúde deve residir:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="e1" id="e1a" value="a"><label for="e1a">A) Em qualquer município da região metropolitana.</label></div>
+                    <div class="option"><input type="radio" name="e1" id="e1b" value="b"><label for="e1b">B) Na capital do estado.</label></div>
+                    <div class="option"><input type="radio" name="e1" id="e1c" value="c"><label for="e1c">C) Na área da comunidade em que atuar, desde a data da publicação do edital do processo seletivo público.</label></div>
+                    <div class="option"><input type="radio" name="e1" id="e1d" value="d"><label for="e1d">D) Preferencialmente no mesmo bairro da Unidade Básica de Saúde.</label></div>
+                    <div class="option"><input type="radio" name="e1" id="e1e" value="e"><label for="e1e">E) Em qualquer local, desde que tenha transporte próprio.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="e2" data-answer="b">
+                <div class="q-header">
+                    <span class="q-number">02</span>
+                    <span class="q-subject">Atribuições do ACS</span>
+                </div>
+                <div class="q-text">Uma das principais atribuições do Agente Comunitário de Saúde é:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="e2" id="e2a" value="a"><label for="e2a">A) Prescrever medicamentos controlados.</label></div>
+                    <div class="option"><input type="radio" name="e2" id="e2b" value="b"><label for="e2b">B) Realizar o cadastramento e a atualização das famílias de sua microárea.</label></div>
+                    <div class="option"><input type="radio" name="e2" id="e2c" value="c"><label for="e2c">C) Realizar partos domiciliares.</label></div>
+                    <div class="option"><input type="radio" name="e2" id="e2d" value="d"><label for="e2d">D) Solicitar exames laboratoriais de alta complexidade.</label></div>
+                    <div class="option"><input type="radio" name="e2" id="e2e" value="e"><label for="e2e">E) Assinar atestados médicos.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="e3" data-answer="a">
+                <div class="q-header">
+                    <span class="q-number">03</span>
+                    <span class="q-subject">Estratégia Saúde da Família</span>
+                </div>
+                <div class="q-text">A Estratégia Saúde da Família (ESF) tem como objetivo principal:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="e3" id="e3a" value="a"><label for="e3a">A) Reorganizar a atenção básica com foco na família e no território.</label></div>
+                    <div class="option"><input type="radio" name="e3" id="e3b" value="b"><label for="e3b">B) Substituir completamente os hospitais.</label></div>
+                    <div class="option"><input type="radio" name="e3" id="e3c" value="c"><label for="e3c">C) Atender apenas casos de urgência e emergência.</label></div>
+                    <div class="option"><input type="radio" name="e3" id="e3d" value="d"><label for="e3d">D) Realizar exclusivamente ações de vigilância sanitária.</label></div>
+                    <div class="option"><input type="radio" name="e3" id="e3e" value="e"><label for="e3e">E) Atuar somente em áreas rurais.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="e4" data-answer="d">
+                <div class="q-header">
+                    <span class="q-number">04</span>
+                    <span class="q-subject">Cadastro Familiar</span>
+                </div>
+                <div class="q-text">O cadastro familiar realizado pelo ACS deve ser atualizado, preferencialmente:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="e4" id="e4a" value="a"><label for="e4a">A) A cada 5 anos.</label></div>
+                    <div class="option"><input type="radio" name="e4" id="e4b" value="b"><label for="e4b">B) Apenas quando a família solicitar.</label></div>
+                    <div class="option"><input type="radio" name="e4" id="e4c" value="c"><label for="e4c">C) Uma única vez, no momento da admissão do ACS.</label></div>
+                    <div class="option"><input type="radio" name="e4" id="e4d" value="d"><label for="e4d">D) Sempre que houver mudança na composição familiar ou de endereço.</label></div>
+                    <div class="option"><input type="radio" name="e4" id="e4e" value="e"><label for="e4e">E) Apenas no final de cada ano.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="e5" data-answer="b">
+                <div class="q-header">
+                    <span class="q-number">05</span>
+                    <span class="q-subject">Visita Domiciliar</span>
+                </div>
+                <div class="q-text">A visita domiciliar do ACS tem como uma de suas finalidades:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="e5" id="e5a" value="a"><label for="e5a">A) Substituir a consulta médica.</label></div>
+                    <div class="option"><input type="radio" name="e5" id="e5b" value="b"><label for="e5b">B) Identificar fatores de risco e vulnerabilidades das famílias.</label></div>
+                    <div class="option"><input type="radio" name="e5" id="e5c" value="c"><label for="e5c">C) Realizar procedimentos invasivos.</label></div>
+                    <div class="option"><input type="radio" name="e5" id="e5d" value="d"><label for="e5d">D) Aplicar vacinas sem orientação da equipe.</label></div>
+                    <div class="option"><input type="radio" name="e5" id="e5e" value="e"><label for="e5e">E) Dispensar medicamentos controlados.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="e6" data-answer="c">
+                <div class="q-header">
+                    <span class="q-number">06</span>
+                    <span class="q-subject">Princípios do SUS</span>
+                </div>
+                <div class="q-text">Um dos princípios doutrinários do Sistema Único de Saúde (SUS) é:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="e6" id="e6a" value="a"><label for="e6a">A) Privatização dos serviços de saúde.</label></div>
+                    <div class="option"><input type="radio" name="e6" id="e6b" value="b"><label for="e6b">B) Centralização exclusiva no nível federal.</label></div>
+                    <div class="option"><input type="radio" name="e6" id="e6c" value="c"><label for="e6c">C) Universalidade, Equidade e Integralidade.</label></div>
+                    <div class="option"><input type="radio" name="e6" id="e6d" value="d"><label for="e6d">D) Atendimento apenas para contribuintes da Previdência.</label></div>
+                    <div class="option"><input type="radio" name="e6" id="e6e" value="e"><label for="e6e">E) Restrição de acesso por critérios socioeconômicos.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="e7" data-answer="a">
+                <div class="q-header">
+                    <span class="q-number">07</span>
+                    <span class="q-subject">Territorialização</span>
+                </div>
+                <div class="q-text">A microárea é:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="e7" id="e7a" value="a"><label for="e7a">A) A menor unidade geográfica sob responsabilidade de um ACS, geralmente com cerca de 150 a 200 famílias ou até 750 pessoas.</label></div>
+                    <div class="option"><input type="radio" name="e7" id="e7b" value="b"><label for="e7b">B) Todo o município.</label></div>
+                    <div class="option"><input type="radio" name="e7" id="e7c" value="c"><label for="e7c">C) A área de cobertura de um hospital de referência.</label></div>
+                    <div class="option"><input type="radio" name="e7" id="e7d" value="d"><label for="e7d">D) A região metropolitana.</label></div>
+                    <div class="option"><input type="radio" name="e7" id="e7e" value="e"><label for="e7e">E) O conjunto de todas as Unidades Básicas de Saúde do estado.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="e8" data-answer="d">
+                <div class="q-header">
+                    <span class="q-number">08</span>
+                    <span class="q-subject">Promoção da Saúde</span>
+                </div>
+                <div class="q-text">São ações de promoção da saúde que podem ser desenvolvidas pelo ACS, EXCETO:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="e8" id="e8a" value="a"><label for="e8a">A) Orientação sobre hábitos alimentares saudáveis.</label></div>
+                    <div class="option"><input type="radio" name="e8" id="e8b" value="b"><label for="e8b">B) Estímulo à prática de atividade física.</label></div>
+                    <div class="option"><input type="radio" name="e8" id="e8c" value="c"><label for="e8c">C) Incentivo ao aleitamento materno.</label></div>
+                    <div class="option"><input type="radio" name="e8" id="e8d" value="d"><label for="e8d">D) Prescrição de antibióticos para infecções.</label></div>
+                    <div class="option"><input type="radio" name="e8" id="e8e" value="e"><label for="e8e">E) Orientação sobre prevenção de acidentes domésticos.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="e9" data-answer="b">
+                <div class="q-header">
+                    <span class="q-number">09</span>
+                    <span class="q-subject">Equipe de Saúde da Família</span>
+                </div>
+                <div class="q-text">A equipe mínima de Saúde da Família é composta por:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="e9" id="e9a" value="a"><label for="e9a">A) Apenas médicos e enfermeiros.</label></div>
+                    <div class="option"><input type="radio" name="e9" id="e9b" value="b"><label for="e9b">B) Médico, enfermeiro, técnico ou auxiliar de enfermagem e Agentes Comunitários de Saúde.</label></div>
+                    <div class="option"><input type="radio" name="e9" id="e9c" value="c"><label for="e9c">C) Apenas Agentes Comunitários de Saúde.</label></div>
+                    <div class="option"><input type="radio" name="e9" id="e9d" value="d"><label for="e9d">D) Médico, dentista e psicólogo.</label></div>
+                    <div class="option"><input type="radio" name="e9" id="e9e" value="e"><label for="e9e">E) Enfermeiro, fisioterapeuta e nutricionista.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <div class="question-card" data-q="e10" data-answer="c">
+                <div class="q-header">
+                    <span class="q-number">10</span>
+                    <span class="q-subject">Ética e Sigilo</span>
+                </div>
+                <div class="q-text">Sobre o sigilo das informações das famílias, o ACS deve:</div>
+                <div class="options">
+                    <div class="option"><input type="radio" name="e10" id="e10a" value="a"><label for="e10a">A) Compartilhar dados sensíveis em redes sociais para conscientização.</label></div>
+                    <div class="option"><input type="radio" name="e10" id="e10b" value="b"><label for="e10b">B) Discutir casos de pacientes em locais públicos.</label></div>
+                    <div class="option"><input type="radio" name="e10" id="e10c" value="c"><label for="e10c">C) Manter o sigilo das informações, compartilhando apenas com a equipe de saúde quando necessário para o cuidado.</label></div>
+                    <div class="option"><input type="radio" name="e10" id="e10d" value="d"><label for="e10d">D) Informar qualquer pessoa da comunidade sobre a situação de saúde dos vizinhos.</label></div>
+                    <div class="option"><input type="radio" name="e10" id="e10e" value="e"><label for="e10e">E) Utilizar dados das famílias para fins pessoais.</label></div>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </section>
+
+        <!-- Actions -->
+        <div class="actions">
+            <button class="btn btn-primary" onclick="checkAll()">Corrigir Todas</button>
+            <button class="btn btn-secondary" onclick="resetQuiz()">Limpar Respostas</button>
+            <button class="btn btn-success" onclick="showFinalResult()">Ver Resultado Final</button>
+        </div>
+
+        <!-- Result Box -->
+        <div class="result-box" id="resultBox">
+            <h2>Resultado do Questionário</h2>
+            <div class="result-score" id="finalScore">0/30</div>
+            <div class="result-message" id="finalMessage"></div>
+            <button class="btn btn-primary" onclick="resetQuiz()">Refazer Questionário</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        Questionário de estudo inspirado no estilo da banca IVIN para Agente Comunitário de Saúde (ACS).<br>
+        Questões elaboradas para fins de preparação. Bons estudos!
+    </footer>
+
+    <script>
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Answer checking on change
+        document.querySelectorAll('.option input').forEach(input => {
+            input.addEventListener('change', function() {
+                const card = this.closest('.question-card');
+                const correct = card.dataset.answer;
+                const selected = this.value;
+                const feedback = card.querySelector('.feedback');
+                const options = card.querySelectorAll('.option');
+
+                // Disable further changes
+                options.forEach(opt => {
+                    opt.classList.add('disabled');
+                    const inp = opt.querySelector('input');
+                    if (inp) inp.disabled = true;
+                });
+
+                options.forEach(opt => {
+                    const val = opt.querySelector('input').value;
+                    if (val === correct) {
+                        opt.classList.add('correct');
+                    } else if (val === selected && selected !== correct) {
+                        opt.classList.add('wrong');
+                    }
+                });
+
+                if (selected === correct) {
+                    card.classList.add('answered-correct');
+                    feedback.className = 'feedback show correct';
+                    feedback.innerHTML = '✅ <strong>Correto!</strong>';
+                } else {
+                    card.classList.add('answered-wrong');
+                    feedback.className = 'feedback show wrong';
+                    feedback.innerHTML = `❌ <strong>Incorreto.</strong> A resposta correta é a alternativa <strong>${correct.toUpperCase()}</strong>.`;
+                }
+
+                updateScore();
+            });
+        });
+
+        function updateScore() {
+            const cards = document.querySelectorAll('.question-card');
+            let answered = 0, correct = 0, wrong = 0;
+
+            cards.forEach(card => {
+                if (card.classList.contains('answered-correct')) {
+                    answered++;
+                    correct++;
+                } else if (card.classList.contains('answered-wrong')) {
+                    answered++;
+                    wrong++;
+                }
+            });
+
+            document.getElementById('answered').textContent = answered;
+            document.getElementById('correct').textContent = correct;
+            document.getElementById('wrong').textContent = wrong;
+            const percent = answered > 0 ? Math.round((correct / answered) * 100) : 0;
+            document.getElementById('percent').textContent = percent + '%';
+        }
+
+        function checkAll() {
+            document.querySelectorAll('.question-card').forEach(card => {
+                const selected = card.querySelector('input:checked');
+                if (selected && !card.classList.contains('answered-correct') && !card.classList.contains('answered-wrong')) {
+                    selected.dispatchEvent(new Event('change'));
+                }
+            });
+        }
+
+        function resetQuiz() {
+            document.querySelectorAll('.question-card').forEach(card => {
+                card.classList.remove('answered-correct', 'answered-wrong');
+                card.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('correct', 'wrong', 'selected', 'disabled');
+                    const inp = opt.querySelector('input');
+                    if (inp) {
+                        inp.disabled = false;
+                        inp.checked = false;
+                    }
+                });
+                const feedback = card.querySelector('.feedback');
+                feedback.className = 'feedback';
+                feedback.innerHTML = '';
+            });
+            document.getElementById('resultBox').classList.remove('show');
+            updateScore();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showFinalResult() {
+            checkAll();
+            const total = 30;
+            const correct = parseInt(document.getElementById('correct').textContent);
+            const scoreEl = document.getElementById('finalScore');
+            const msgEl = document.getElementById('finalMessage');
+
+            scoreEl.textContent = `${correct}/${total}`;
+
+            let message = '';
+            const pct = (correct / total) * 100;
+            if (pct >= 80) {
+                message = 'Excelente! Você está muito bem preparado(a) para a prova. Continue revisando!';
+            } else if (pct >= 60) {
+                message = 'Bom desempenho! Revise os pontos em que errou e continue praticando.';
+            } else if (pct >= 40) {
+                message = 'Você está no caminho. Foque nos assuntos com mais erros e faça mais questões.';
+            } else {
+                message = 'Precisa reforçar os estudos. Revise o conteúdo e refaça o questionário.';
+            }
+            msgEl.textContent = message;
+
+            document.getElementById('resultBox').classList.add('show');
+            document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
