@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Acesso à plataforma preparatória para o concurso de Agente Comunitário de Saúde de Canto do Buriti.">
+  <title>Entrar | Preparatório ACS - Canto do Buriti</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="login-page">
+    <section class="login-shell">
+      <aside class="login-promo">
+        <div class="login-promo-content">
+          <div class="login-brand">
+            <div class="login-brand-mark">A</div>
+            <div>
+              <strong>ACS • Canto do Buriti</strong>
+              <small>PLATAFORMA PREPARATÓRIA</small>
+            </div>
+          </div>
+          <h1>Seu caminho para a aprovação começa aqui.</h1>
+          <p>Entre na sua área de estudos e continue sua preparação para o concurso de Agente Comunitário de Saúde.</p>
+          <div class="login-promo-list">
+            <div><span class="login-promo-check">✓</span> Materiais organizados</div>
+            <div><span class="login-promo-check">✓</span> Simulados e questões</div>
+            <div><span class="login-promo-check">✓</span> Progresso por competências</div>
+            <div><span class="login-promo-check">✓</span> Histórico de desempenho</div>
+          </div>
+        </div>
+        <div class="login-promo-footer">PREPARAÇÃO • CONSTÂNCIA • RESULTADO</div>
+      </aside>
+
+      <section class="login-form-area">
+        <div class="eyebrow">ÁREA DO CANDIDATO</div>
+        <h2 id="loginTitle">Bem-vindo de volta!</h2>
+        <p class="login-description">Informe o e-mail e a senha liberados pelo administrador.</p>
+
+        <div class="login-message" id="loginMessage" role="status"></div>
+
+        <form id="loginForm">
+          <div class="field">
+            <label for="usuario">E-mail</label>
+            <input type="email" id="usuario" name="usuario" placeholder="Digite seu e-mail" autocomplete="username" required>
+          </div>
+          <div class="field">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" placeholder="Digite sua senha" autocomplete="current-password" required>
+          </div>
+
+          <div class="login-options">
+            <label class="login-remember"><input type="checkbox" name="lembrar" checked> Manter conectado</label>
+            <a class="login-link" href="https://wa.me/5589981267779?text=Ol%C3%A1%2C%20preciso%20de%20ajuda%20com%20meu%20acesso." id="forgotPassword" target="_blank" rel="noopener noreferrer">Precisa de ajuda?</a>
+          </div>
+
+          <button class="btn btn-primary login-submit" type="submit">Entrar na plataforma&nbsp; →</button>
+        </form>
+
+        <div class="login-divider">ACESSO DO CANDIDATO</div>
+        <p class="login-help">Ainda não recebeu acesso?<br><a class="login-link" href="https://wa.me/5589981267779?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20acesso%20%C3%A0%20plataforma." target="_blank" rel="noopener noreferrer">Fale com o administrador pelo WhatsApp</a></p>
+        <a class="login-back" href="vendas.html">← Voltar para a apresentação</a>
+      </section>
+    </section>
+  </main>
+
+  <script src="users.js"></script>
+  <script>
+    const form = document.getElementById('loginForm');
+    const message = document.getElementById('loginMessage');
+    const showMessage = text => {
+      message.textContent = text;
+      message.classList.add('show');
+    };
+    const redirectAfterLogin = () => window.location.replace(Users.safeReturnPath());
+
+    form.addEventListener('submit', async function(event) {
+      event.preventDefault();
+      try {
+        await Users.login({
+          email: document.getElementById('usuario').value,
+          password: document.getElementById('senha').value,
+          remember: form.elements.lembrar.checked
+        });
+        redirectAfterLogin();
+      } catch (error) {
+        showMessage(error.message || 'Não foi possível entrar. Tente novamente.');
+      }
+    });
+
+    if (new URLSearchParams(window.location.search).get('erro') === 'usuarios') {
+      showMessage('Não foi possível validar o acesso. Atualize a página ou fale com o administrador.');
+    }
+  </script>
+</body>
+</html>

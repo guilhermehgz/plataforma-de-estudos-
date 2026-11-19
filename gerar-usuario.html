@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gere o bloco de usuário para adicionar manualmente à plataforma ACS.">
+  <title>Gerar usuário | Preparatório ACS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="generator-page">
+    <section class="generator-card">
+      <a class="generator-back" href="vendas.html">← Voltar à plataforma</a>
+      <div class="eyebrow">FERRAMENTA ADMINISTRATIVA</div>
+      <h1>Gerar usuário</h1>
+      <p class="generator-description">Informe os dados para gerar um bloco pronto para copiar e adicionar manualmente à lista de usuários.</p>
+
+      <form id="userForm">
+        <div class="field">
+          <label for="name">Nome</label>
+          <input id="name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="password">Senha (mínimo 8 caracteres)</label>
+          <input id="password" name="password" type="password" minlength="8" autocomplete="new-password" required>
+        </div>
+        <button class="btn btn-primary generator-submit" type="submit">Gerar código</button>
+      </form>
+
+      <p class="generator-privacy">A senha é processada neste navegador e não é salva; no código ela aparece apenas como hash e salt.</p>
+      <p class="generator-message" id="message" role="status" aria-live="polite"></p>
+
+      <section id="result" hidden>
+        <label class="generator-output-label" for="generatedCode">Código para copiar</label>
+        <textarea id="generatedCode" rows="7" readonly spellcheck="false"></textarea>
+        <button class="btn btn-primary generator-copy" id="copyCode" type="button">Copiar código</button>
+        <p class="generator-instructions">Cole o bloco no array <code>USERS</code> de <code>users.js</code> e publique a alteração para liberar o acesso.</p>
+      </section>
+    </section>
+  </main>
+
+  <script src="users.js"></script>
+  <script>
+    const form = document.getElementById('userForm');
+    const message = document.getElementById('message');
+    const result = document.getElementById('result');
+    const generatedCode = document.getElementById('generatedCode');
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      message.textContent = '';
+      result.hidden = true;
+
+      try {
+        generatedCode.value = await Users.generateUserCode({
+          name: form.elements.name.value,
+          email: form.elements.email.value,
+          password: form.elements.password.value
+        });
+        result.hidden = false;
+        form.elements.password.value = '';
+        message.textContent = 'Código gerado. Copie e adicione à lista USERS.';
+      } catch (error) {
+        message.textContent = error.message || 'Não foi possível gerar o código.';
+      }
+    });
+
+    document.getElementById('copyCode').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(generatedCode.value);
+        message.textContent = 'Código copiado.';
+      } catch (error) {
+        generatedCode.focus();
+        generatedCode.select();
+        message.textContent = 'Não foi possível copiar automaticamente. Selecione o código e copie manualmente.';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,991 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Progresso | Preparatório ACS</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+* { box-sizing: border-box; }
+
+.progress-page {
+    max-width: 1150px;
+    margin: auto;
+    padding: 24px;
+    color: #243447;
+}
+
+.progress-header {
+    background: linear-gradient(135deg,#123b65,#2874ad);
+    color: white;
+    border-radius: 15px;
+    padding: 28px;
+    margin-bottom: 22px;
+}
+
+.progress-header h1 { margin: 0 0 8px; }
+.progress-header p { margin: 0; opacity: .9; }
+
+.panel {
+    background: white;
+    border: 1px solid #e5eaf0;
+    border-radius: 13px;
+    padding: 22px;
+    margin-bottom: 22px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.04);
+}
+
+.panel h2 {
+    color: #123b65;
+    margin-top: 0;
+    font-size: 21px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid #e5eaf0;
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.stat-card small {
+    color: #64748b;
+    display: block;
+}
+
+.stat-card strong {
+    font-size: 28px;
+    display: block;
+    color: #123b65;
+    margin-top: 7px;
+}
+
+.progress-track {
+    height: 12px;
+    background: #e9eef4;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    background: #25875a;
+    border-radius: 20px;
+    transition: width .3s;
+}
+
+.subject-progress {
+    margin: 16px 0;
+}
+
+.subject-progress strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.subject-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.subject-heading span {
+    color: #2563a0;
+    font-weight: bold;
+}
+
+.study-subject {
+    border: 1px solid #e5eaf0;
+    border-radius: 10px;
+    margin-bottom: 14px;
+    overflow: hidden;
+}
+
+.study-subject summary {
+    cursor: pointer;
+    padding: 16px;
+    background: #f8fafc;
+    font-weight: bold;
+    color: #123b65;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.study-subject summary::-webkit-details-marker {
+    display: none;
+}
+
+.study-subject summary::after {
+    content: "+";
+    font-size: 20px;
+}
+
+.study-subject[open] summary::after {
+    content: "−";
+}
+
+.topic-list { padding: 14px 17px; }
+
+.check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #f0f2f5;
+    cursor: pointer;
+    line-height: 1.4;
+}
+
+.check-item:last-child { border-bottom: none; }
+
+.check-item input {
+    width: 18px;
+    height: 18px;
+    accent-color: #25875a;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.check-item input:checked + span {
+    text-decoration: line-through;
+    color: #8492a6;
+}
+
+.manual-field {
+    margin-top: 15px;
+    padding: 14px;
+    background: #f8fafc;
+    border-radius: 9px;
+}
+
+.manual-field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+input, select {
+    padding: 11px;
+    border: 1px solid #dce3ec;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 15px;
+}
+
+button {
+    padding: 11px 17px;
+    border: none;
+    border-radius: 8px;
+    background: #2563a0;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover { opacity: .9; }
+
+.btn-danger { background: #bd4141; }
+.btn-secondary { background: #64748b; }
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 13px;
+}
+
+.form-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.chart-area {
+    margin-top: 18px;
+}
+
+.chart-row {
+    margin: 17px 0;
+}
+
+.chart-label {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.chart-bar {
+    height: 20px;
+    background: #edf1f5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.chart-value {
+    height: 100%;
+    border-radius: 20px;
+    background: #2874ad;
+    transition: width .3s;
+}
+
+.chart-value.low { background: #d97736; }
+.chart-value.high { background: #25875a; }
+
+.result-item {
+    padding: 14px;
+    background: #f8fafc;
+    border-radius: 9px;
+    margin: 10px 0;
+    border: 1px solid #e5eaf0;
+}
+
+.result-item strong { color: #123b65; }
+
+.recommendation {
+    background: #fff7e6;
+    border-left: 4px solid #e3a23b;
+    padding: 15px;
+    border-radius: 7px;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+.empty {
+    color: #64748b;
+    padding: 15px;
+    text-align: center;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+}
+
+@media(max-width:650px) {
+    .progress-page { padding: 12px; }
+    .cards { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .panel { padding: 15px; }
+}
+</style>
+</head>
+
+<body data-requires-auth="true">
+
+<main class="progress-page">
+
+<header class="progress-header">
+    <h1>📊 Meu Progresso</h1>
+    <p>Preparatório para Agente Comunitário de Saúde</p>
+    <p>Canto do Buriti – PI | Concurso 001/2026</p>
+</header>
+
+<!-- RESUMO GERAL -->
+
+<section class="cards">
+    <div class="stat-card">
+        <small>Assuntos estudados</small>
+        <strong id="studiedCount">0</strong>
+    </div>
+
+    <div class="stat-card">
+        <small>Total de assuntos</small>
+        <strong id="totalCount">0</strong>
+    </div>
+
+    <div class="stat-card">
+        <small>Conclusão dos estudos</small>
+        <strong id="overallPercent">0%</strong>
+    </div>
+</section>
+
+<!-- PROGRESSO MANUAL -->
+
+<section class="panel">
+    <h2>🎯 Meu domínio geral</h2>
+    <p>Informe manualmente quanto você considera que já domina do conteúdo do edital.</p>
+
+    <div class="form-field">
+        <label for="manualOverall">Percentual de domínio (%)</label>
+        <input type="number" id="manualOverall" min="0" max="100"
+            placeholder="Exemplo: 65">
+    </div>
+
+    <div class="progress-track">
+        <div class="progress-fill" id="manualBar"></div>
+    </div>
+
+    <strong id="manualText">0% de domínio informado</strong>
+</section>
+
+<!-- RESUMO POR DISCIPLINA -->
+
+<section class="panel">
+    <h2>📚 Progresso por disciplina</h2>
+    <div id="subjectProgress"></div>
+</section>
+
+<!-- CHECKLIST -->
+
+<section class="panel">
+    <h2>✅ Checklist de assuntos estudados</h2>
+    <p>Marque manualmente cada assunto após estudar e revisar o conteúdo.</p>
+    <div id="checklists"></div>
+</section>
+
+<!-- CADASTRO DE SIMULADOS -->
+
+<!-- GRÁFICO -->
+
+<section class="panel">
+    <h2>📈 Desempenho nos simulados</h2>
+    <p>O gráfico mostra o percentual de acertos por disciplina no último simulado registrado.</p>
+
+    <div id="latestChart" class="chart-area">
+        <p class="empty">Registre seu primeiro simulado para visualizar o gráfico.</p>
+    </div>
+
+    <div class="recommendation" id="weakArea">
+        Ainda não existem resultados para gerar recomendações.
+    </div>
+</section>
+
+<!-- EVOLUÇÃO -->
+
+<section class="panel">
+    <h2>📊 Histórico e evolução</h2>
+    <p>Compare seu desempenho entre os simulados realizados.</p>
+    <div id="historyChart"></div>
+</section>
+
+<!-- HISTÓRICO -->
+
+<section class="panel">
+    <h2>📋 Histórico de simulados</h2>
+    <div id="resultHistory">
+        <p class="empty">Nenhum simulado cadastrado.</p>
+    </div>
+</section>
+
+<section class="panel">
+    <h2>💾 Dados e segurança</h2>
+    <p>Seu progresso fica salvo no armazenamento local deste navegador.</p>
+    <div class="action-buttons">
+        <button type="button" onclick="exportarDados()">Exportar backup</button>
+        <button type="button" class="btn-secondary"
+            onclick="document.getElementById('importFile').click()">
+            Importar backup
+        </button>
+        <button type="button" class="btn-danger"
+            onclick="limparDados()">Limpar todos os dados</button>
+    </div>
+    <input type="file" id="importFile" accept=".json"
+        style="display:none" onchange="importarDados(event)">
+</section>
+
+</main>
+
+<script src="users.js"></script>
+<script>
+
+// =====================================
+// 1. ASSUNTOS DO EDITAL
+// =====================================
+
+const disciplinas = {
+
+    portugues: {
+        nome: "Língua Portuguesa",
+        icone: "📖",
+        assuntos: [
+            "Leitura e interpretação de texto",
+            "Ortografia",
+            "Acentuação gráfica",
+            "Encontros vocálicos",
+            "Encontros consonantais",
+            "Dígrafos",
+            "Divisão silábica",
+            "Adjetivos",
+            "Artigos",
+            "Verbos: tempo, número, pessoa e conjugação",
+            "Sinônimos e antônimos",
+            "Pontuação",
+            "Substantivos: classificação e flexão",
+            "Regras gramaticais"
+        ]
+    },
+
+    matematica: {
+        nome: "Matemática",
+        icone: "🔢",
+        assuntos: [
+            "Quantidade",
+            "Volume",
+            "Comprimento",
+            "Massa",
+            "Altura",
+            "Formas geométricas",
+            "Relógio e horas",
+            "Abreviaturas do sistema de medidas",
+            "Frações representadas por desenhos",
+            "Problemas envolvendo dinheiro",
+            "Adição",
+            "Subtração",
+            "Multiplicação",
+            "Divisão",
+            "Números pares e ímpares",
+            "Algarismos romanos",
+            "Sequência numérica"
+        ]
+    },
+
+    especificos: {
+        nome: "Conhecimentos Específicos – ACS",
+        icone: "🏥",
+        assuntos: [
+            "Princípios e diretrizes do SUS",
+            "Processo saúde-doença e determinantes sociais",
+            "Visita domiciliar",
+            "Cadastramento familiar e territorial",
+            "Interpretação demográfica",
+            "Territorialização, microárea e abrangência",
+            "Indicadores epidemiológicos",
+            "Levantamento das condições de vida e saúde",
+            "Critérios de priorização das ações",
+            "Eficácia, eficiência e efetividade",
+            "Qualidade da atenção à saúde",
+            "Meio ambiente e saneamento básico",
+            "IST e HIV",
+            "Tuberculose",
+            "Hanseníase",
+            "Dengue",
+            "Hipertensão arterial",
+            "Diabetes mellitus",
+            "Diarreia e desidratação",
+            "Vacinas e calendário de vacinação",
+            "Aparelho reprodutor masculino e feminino",
+            "Gravidez e planejamento familiar",
+            "Sistemas de informação: SIM, SINAN, SIAB, SINASC, SIA e SIH",
+            "Condições de risco social",
+            "Promoção da saúde",
+            "Pessoa com deficiência e inclusão",
+            "Programas nacionais de saúde",
+            "Estatuto da Criança e do Adolescente",
+            "Estatuto da Pessoa Idosa",
+            "Ética e cidadania",
+            "Política Nacional de Humanização",
+            "Atenção Primária e Estratégia Saúde da Família",
+            "PACS",
+            "NASF e equipes multiprofissionais",
+            "Serviço de Atenção Domiciliar",
+            "Atribuições legais do ACS"
+        ]
+    }
+};
+
+const areasSimulado = [
+    {id:"port",nome:"Português",cor:""},
+    {id:"mat",nome:"Matemática/Raciocínio",cor:""},
+    {id:"info",nome:"Informática",cor:""},
+    {id:"acs",nome:"Conhecimentos Específicos",cor:""}
+];
+
+// =====================================
+// 2. ARMAZENAMENTO
+// =====================================
+
+const CHAVE = "preparatorioACS_progresso_v1";
+
+let dados = carregarDados();
+
+function carregarDados() {
+    try {
+        const salvo = localStorage.getItem(CHAVE);
+        if (salvo) return JSON.parse(salvo);
+    } catch(e) {}
+    return {
+        checklist: {},
+        dominio: 0,
+        simulados: []
+    };
+}
+
+function salvar() {
+    localStorage.setItem(CHAVE, JSON.stringify(dados));
+}
+
+// =====================================
+// 3. CRIAR CHECKLIST
+// =====================================
+
+function criarChecklists() {
+    const container = document.getElementById("checklists");
+
+    Object.entries(disciplinas).forEach(([id,disciplina]) => {
+
+        const detalhes = document.createElement("details");
+        detalhes.className = "study-subject";
+
+        const titulo = document.createElement("summary");
+        titulo.innerHTML =
+            `<span>${disciplina.icone} ${disciplina.nome}</span>
+             <span id="count-${id}">0/${disciplina.assuntos.length}</span>`;
+
+        detalhes.appendChild(titulo);
+
+        const lista = document.createElement("div");
+        lista.className = "topic-list";
+
+        disciplina.assuntos.forEach((assunto,index) => {
+
+            const chave = id + "_" + index;
+
+            const label = document.createElement("label");
+            label.className = "check-item";
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.checked = !!dados.checklist[chave];
+
+            checkbox.addEventListener("change", () => {
+                dados.checklist[chave] = checkbox.checked;
+                salvar();
+                atualizarTudo();
+            });
+
+            const texto = document.createElement("span");
+            texto.textContent = assunto;
+
+            label.appendChild(checkbox);
+            label.appendChild(texto);
+            lista.appendChild(label);
+        });
+
+        detalhes.appendChild(lista);
+        container.appendChild(detalhes);
+    });
+}
+
+// =====================================
+// 4. CÁLCULO DE PROGRESSO
+// =====================================
+
+function calcularProgresso(id) {
+    const assuntos = disciplinas[id].assuntos;
+
+    const feitos = assuntos.filter((_,index) =>
+        dados.checklist[id + "_" + index]
+    ).length;
+
+    return {
+        feitos,
+        total: assuntos.length,
+        percentual: Math.round(feitos / assuntos.length * 100)
+    };
+}
+
+function atualizarProgresso() {
+
+    let total = 0;
+    let feitos = 0;
+
+    Object.keys(disciplinas).forEach(id => {
+        const p = calcularProgresso(id);
+
+        total += p.total;
+        feitos += p.feitos;
+
+        const count = document.getElementById("count-" + id);
+        if(count) count.textContent = `${p.feitos}/${p.total}`;
+    });
+
+    const percentual = Math.round(feitos / total * 100);
+
+    document.getElementById("studiedCount").textContent = feitos;
+    document.getElementById("totalCount").textContent = total;
+    document.getElementById("overallPercent").textContent =
+        percentual + "%";
+
+    const container = document.getElementById("subjectProgress");
+    container.innerHTML = "";
+
+    Object.entries(disciplinas).forEach(([id,disciplina]) => {
+
+        const p = calcularProgresso(id);
+
+        const div = document.createElement("div");
+        div.className = "subject-progress";
+
+        div.innerHTML = `
+            <div class="subject-heading">
+                <strong>${disciplina.icone} ${disciplina.nome}</strong>
+                <span>${p.percentual}%</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill"
+                    style="width:${p.percentual}%"></div>
+            </div>
+            <small>${p.feitos} de ${p.total} assuntos concluídos</small>
+        `;
+
+        container.appendChild(div);
+    });
+}
+
+// =====================================
+// 5. PERCENTUAL MANUAL
+// =====================================
+
+const manualInput = document.getElementById("manualOverall");
+
+manualInput.value = dados.dominio || 0;
+
+function atualizarManual() {
+    let valor = Number(dados.dominio) || 0;
+    valor = Math.max(0,Math.min(100,valor));
+
+    document.getElementById("manualBar").style.width = valor + "%";
+    document.getElementById("manualText").textContent =
+        valor + "% de domínio informado";
+}
+
+manualInput.addEventListener("input", () => {
+    let valor = manualInput.value === "" ? 0 :
+        Number(manualInput.value);
+
+    valor = Math.max(0,Math.min(100,valor));
+
+    dados.dominio = valor;
+    salvar();
+    atualizarManual();
+});
+
+
+
+// =====================================
+// 7. GRÁFICO DO ÚLTIMO SIMULADO
+// =====================================
+
+function criarGrafico() {
+
+    const container = document.getElementById("latestChart");
+    const recomendacao = document.getElementById("weakArea");
+
+    container.innerHTML = "";
+
+    if(dados.simulados.length === 0) {
+        container.innerHTML =
+            '<p class="empty">Registre seu primeiro simulado para visualizar o gráfico.</p>';
+        recomendacao.textContent =
+            "Ainda não existem resultados para gerar recomendações.";
+        return;
+    }
+
+    const ultimo = dados.simulados[dados.simulados.length - 1];
+
+    let menores = [];
+
+    const areasAvaliadas = areasSimulado.filter(area =>
+        ultimo.areas[area.id] && ultimo.areas[area.id].total > 0
+    );
+    if(areasAvaliadas.length === 0) {
+        container.innerHTML = '<p class="empty">O último simulado não possui questões válidas por disciplina.</p>';
+        recomendacao.textContent = "Não há questões avaliadas para gerar recomendações.";
+        return;
+    }
+
+    areasAvaliadas.forEach(area => {
+
+        const resultado = ultimo.areas[area.id];
+        const percentual = resultado.percentual;
+
+        const row = document.createElement("div");
+        row.className = "chart-row";
+
+        const classe = percentual < 50 ? "low" :
+            percentual >= 75 ? "high" : "";
+
+        row.innerHTML = `
+            <div class="chart-label">
+                <strong>${area.nome}</strong>
+                <span>${resultado.acertos}/${resultado.total} (${percentual}%)</span>
+            </div>
+            <div class="chart-bar">
+                <div class="chart-value ${classe}"
+                    style="width:${percentual}%"></div>
+            </div>
+        `;
+
+        container.appendChild(row);
+
+        menores.push({
+            nome: area.nome,
+            percentual
+        });
+    });
+
+    menores.sort((a,b) => a.percentual - b.percentual);
+
+    const pior = menores[0];
+    const melhor = menores[menores.length - 1];
+
+    let texto = `<strong>📌 Diagnóstico do ${ultimo.nome}</strong><br><br>`;
+
+    if(pior.percentual < 70) {
+        texto += `Sua maior necessidade de reforço está em <strong>${pior.nome}</strong>, com ${pior.percentual}% de acertos. Priorize essa disciplina nos próximos estudos.`;
+    } else {
+        texto += `Seu resultado está equilibrado, mas sua menor pontuação foi em <strong>${pior.nome}</strong>, com ${pior.percentual}%. Continue revisando essa área.`;
+    }
+
+    texto += `<br><br>Seu melhor resultado foi em <strong>${melhor.nome}</strong>, com ${melhor.percentual}%.`;
+
+    recomendacao.innerHTML = texto;
+}
+
+// =====================================
+// 8. HISTÓRICO DE DESEMPENHO
+// =====================================
+
+function criarHistorico() {
+
+    const container = document.getElementById("historyChart");
+    container.innerHTML = "";
+
+    if(dados.simulados.length === 0) {
+        container.innerHTML =
+            '<p class="empty">Ainda não há evolução registrada.</p>';
+        return;
+    }
+
+    areasSimulado.forEach(area => {
+        const simuladosDaArea = dados.simulados.filter(simulado =>
+            simulado.areas[area.id] && simulado.areas[area.id].total > 0
+        );
+        if(simuladosDaArea.length === 0) return;
+
+        const titulo = document.createElement("h3");
+        titulo.textContent = area.nome;
+        titulo.style.color = "#123b65";
+        titulo.style.fontSize = "16px";
+        container.appendChild(titulo);
+
+        simuladosDaArea.forEach(simulado => {
+
+            const resultado = simulado.areas[area.id];
+
+            const row = document.createElement("div");
+            row.className = "chart-row";
+
+            row.innerHTML = `
+                <div class="chart-label">
+                    <span>${simulado.nome}</span>
+                    <strong>${resultado.percentual}%</strong>
+                </div>
+                <div class="chart-bar">
+                    <div class="chart-value"
+                        style="width:${resultado.percentual}%"></div>
+                </div>
+            `;
+
+            container.appendChild(row);
+        });
+    });
+}
+
+// =====================================
+// 9. LISTA DE RESULTADOS
+// =====================================
+
+function mostrarHistorico() {
+
+    const container = document.getElementById("resultHistory");
+    container.innerHTML = "";
+
+    if(dados.simulados.length === 0) {
+        container.innerHTML =
+            '<p class="empty">Nenhum simulado cadastrado.</p>';
+        return;
+    }
+
+    [...dados.simulados].reverse().forEach(simulado => {
+
+        const totalAcertos = Object.values(simulado.areas)
+            .reduce((s,a) => s + a.acertos,0);
+
+        const totalQuestoes = Object.values(simulado.areas)
+            .reduce((s,a) => s + a.total,0);
+
+        const percentual = totalQuestoes
+            ? Math.round(totalAcertos / totalQuestoes * 100)
+            : 0;
+
+        const div = document.createElement("div");
+        div.className = "result-item";
+
+        const dataFormatada = simulado.data.split("-").reverse().join("/");
+
+        const detalhes = areasSimulado.map(area => {
+            const r = simulado.areas[area.id];
+            return r && r.total > 0
+                ? `${area.nome}: ${r.acertos}/${r.total} (${r.percentual}%)`
+                : `${area.nome}: não avaliada`;
+        }).join("<br>");
+
+        div.innerHTML = `
+            <strong>${simulado.nome}</strong>
+            <span style="float:right">${percentual}% geral</span>
+            <br><small>${dataFormatada}</small>
+            <p>${totalAcertos} acertos de ${totalQuestoes} questões</p>
+            <details>
+                <summary>Ver resultado por disciplina</summary>
+                <p>${detalhes}</p>
+            </details>
+            <button class="btn-danger" style="margin-top:12px"
+                onclick="excluirSimulado(${simulado.id})">
+                Excluir resultado
+            </button>
+        `;
+
+        container.appendChild(div);
+    });
+}
+
+function excluirSimulado(id) {
+    if(!confirm("Deseja excluir este resultado?")) return;
+
+    dados.simulados = dados.simulados.filter(s => s.id !== id);
+    salvar();
+    atualizarTudo();
+}
+
+// =====================================
+// 10. BACKUP E RESTAURAÇÃO
+// =====================================
+
+function exportarDados() {
+
+    const arquivo = new Blob(
+        [JSON.stringify(dados,null,2)],
+        {type:"application/json"}
+    );
+
+    const url = URL.createObjectURL(arquivo);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "backup-progresso-acs.json";
+    link.click();
+
+    URL.revokeObjectURL(url);
+}
+
+function importarDados(event) {
+
+    const arquivo = event.target.files[0];
+    if(!arquivo) return;
+
+    const leitor = new FileReader();
+
+    leitor.onload = function() {
+        try {
+            const novo = JSON.parse(leitor.result);
+
+            if(!novo || typeof novo.checklist !== "object" ||
+               !Array.isArray(novo.simulados) ||
+               !novo.simulados.every(s =>
+                   s && typeof s.id === "number" &&
+                   typeof s.nome === "string" &&
+                   typeof s.areas === "object" &&
+                   ["port","mat","info","acs"].every(k =>
+                       s.areas[k] &&
+                       Number.isFinite(s.areas[k].acertos) &&
+                       Number.isFinite(s.areas[k].total) &&
+                       Number.isFinite(s.areas[k].percentual) &&
+                       s.areas[k].total >= 0 &&
+                       s.areas[k].acertos >= 0 &&
+                       s.areas[k].acertos <= s.areas[k].total &&
+                       (s.areas[k].total > 0
+                           ? s.areas[k].percentual === Math.round(s.areas[k].acertos / s.areas[k].total * 100)
+                           : s.areas[k].acertos === 0 && s.areas[k].percentual === 0)
+                   )
+               )) {
+                throw new Error("Formato inválido");
+            }
+
+            if(!confirm("Importar este backup e substituir os dados atuais?")) return;
+
+            dados = {
+                checklist: novo.checklist,
+                dominio: Math.max(0,Math.min(100,Number(novo.dominio)||0)),
+                simulados: novo.simulados
+            };
+
+            salvar();
+            manualInput.value = dados.dominio;
+            atualizarTudo();
+
+            alert("Backup importado com sucesso!");
+
+        } catch(e) {
+            alert("Não foi possível importar o arquivo. Verifique se é um backup válido.");
+        }
+    };
+
+    leitor.readAsText(arquivo);
+    event.target.value = "";
+}
+
+function limparDados() {
+    if(!confirm("ATENÇÃO: deseja apagar todo o progresso e histórico de simulados?")) return;
+
+    dados = {
+        checklist:{},
+        dominio:0,
+        simulados:[]
+    };
+
+    salvar();
+
+    manualInput.value = 0;
+    document.getElementById("checklists").innerHTML = "";
+
+    criarChecklists();
+    atualizarTudo();
+}
+
+// =====================================
+// 11. ATUALIZAR TUDO
+// =====================================
+
+function atualizarTudo() {
+    atualizarProgresso();
+    atualizarManual();
+    criarGrafico();
+    criarHistorico();
+    mostrarHistorico();
+}
+
+criarChecklists();
+atualizarTudo();
+
+</script>
+
+</body>
+</html>

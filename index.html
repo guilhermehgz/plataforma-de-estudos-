@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preparatório ACS - Canto do Buriti</title>
+
+    <!-- Conexão com o CSS externo -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-requires-auth="true">
+
+    <div class="layout">
+
+        <!-- MENU LATERAL -->
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-mark">A</div>
+                <div>
+                    <strong>ACS • Canto do Buriti</strong>
+                    <small>PLATAFORMA PREPARATÓRIA</small>
+                </div>
+            </div>
+
+            <div>
+                <div class="nav-label">Menu principal</div>
+
+                <nav>
+                    <a class="active" href="index.html">
+                        <span class="nav-icon">⌂</span> Início
+                    </a>
+
+                    <a href="materiais.html">
+                        <span class="nav-icon">▤</span> Materiais de estudo
+                    </a>
+
+                    <a href="simulados.html">
+                        <span class="nav-icon">☑</span> Simulados
+                    </a>
+
+                    <a href="progresso.html">
+                        <span class="nav-icon">▥</span> Meu progresso
+                    </a>
+
+                  
+                </nav>
+            </div>
+
+            <div class="sidebar-note">
+                <b>🎯 Sua aprovação começa aqui</b>
+                <p>
+                    Estude com organização, pratique com simulados
+                    e acompanhe sua evolução até a prova.
+                </p>
+            </div>
+
+        </aside>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="main">
+
+            <header class="topbar">
+                <div class="breadcrumb">
+                    Preparatório ACS / <b>Página inicial</b>
+                </div>
+
+                <div class="top-actions">
+                    <span class="status">● Área do candidato</span>
+
+                    <span class="avatar" id="userInitials" aria-label="Usuário conectado">AC</span>
+                    <button class="logout-button" id="logout" type="button" aria-label="Sair da conta"><span aria-hidden="true">↪</span> Sair</button>
+                </div>
+            </header>
+
+            <div class="content">
+
+                <!-- BOAS-VINDAS -->
+                <section class="welcome">
+                    <div>
+                        <div class="eyebrow">
+                            CONCURSO PÚBLICO • CANTO DO BURITI
+                        </div>
+
+                        <h1>Prepare-se para sua aprovação!</h1>
+
+                        <p>
+                            Uma plataforma de estudos para ajudar você
+                            a conquistar sua vaga de Agente Comunitário de Saúde.
+                        </p>
+                    </div>
+
+                    <div class="date-chip">
+                        📚 Sua jornada começa agora
+                    </div>
+                </section>
+
+                <!-- DESTAQUE -->
+                <section class="hero">
+
+                    <div class="hero-copy">
+                        <h2>Conhecimento e dedicação abrem caminhos.</h2>
+
+                        <p>
+                            Encontre seus materiais, pratique com questões
+                            e acompanhe seu desempenho. Organize sua rotina
+                            e avance um passo de cada vez rumo à aprovação.
+                        </p>
+
+                    </div>
+
+                    <div class="hero-tag">
+                        FOCO • CONSTÂNCIA • RESULTADO
+                    </div>
+
+                </section>
+
+                <!-- INDICADORES -->
+                <section class="stats">
+
+                    <div class="stat">
+                        <div class="stat-top">
+                            Materiais de estudo
+                            <span class="stat-icon">▤</span>
+                        </div>
+                        <strong>Organizados</strong>
+                        <small>Conteúdos por disciplina</small>
+                    </div>
+
+                    <div class="stat">
+                        <div class="stat-top">
+                            Simulados
+                            <span class="stat-icon">☑</span>
+                        </div>
+                        <strong>Pratique</strong>
+                        <small>Teste seus conhecimentos</small>
+                    </div>
+
+                    <div class="stat">
+                        <div class="stat-top">
+                            Desempenho
+                            <span class="stat-icon">◉</span>
+                        </div>
+                        <strong>Acompanhe</strong>
+                        <small>Veja sua evolução</small>
+                    </div>
+
+                </section>
+
+                <section class="quick-grid">
+
+                    <article class="quick-card">
+                        <div class="quick-icon">📚</div>
+
+                        <div>
+                            <h4>Materiais de estudo</h4>
+                            <p>
+                                Apostilas, resumos, legislação,
+                                conhecimentos específicos e materiais de apoio.
+                            </p>
+
+                            <a href="materiais.html">Acessar materiais →</a>
+                        </div>
+                    </article>
+
+                    <article class="quick-card">
+                        <div class="quick-icon">📝</div>
+
+                        <div>
+                            <h4>Simulados</h4>
+                            <p>
+                                Resolva questões, pratique por disciplina
+                                e teste sua preparação para a prova.
+                            </p>
+
+                            <a href="simulados.html">Fazer simulados →</a>
+                        </div>
+                    </article>
+
+                    <article class="quick-card">
+                        <div class="quick-icon">📈</div>
+
+                        <div>
+                            <h4>Meu progresso</h4>
+                            <p>
+                                Acompanhe seus acertos, dificuldades
+                                e evolução por habilidades e competências.
+                            </p>
+
+                            <a href="progresso.html">Ver meu progresso →</a>
+                        </div>
+                    </article>
+
+                </section>
+             
+
+                </div>
+
+            </div>
+
+            <footer>
+                Preparatório ACS • Canto do Buriti
+            </footer>
+
+        </main>
+
+    </div>
+
+    <script src="users.js"></script>
+    <script>
+        const authenticatedUser = Users.getCurrentUser();
+        if (authenticatedUser) {
+            document.getElementById('userInitials').textContent = authenticatedUser.name
+                .split(/\s+/)
+                .slice(0, 2)
+                .map(part => part[0].toUpperCase())
+                .join('');
+            document.getElementById('userInitials').title = authenticatedUser.name;
+            document.getElementById('logout').addEventListener('click', function() {
+                Users.logout();
+                window.location.replace('login.html');
+            });
+        }
+    </script>
+</body>
+</html>

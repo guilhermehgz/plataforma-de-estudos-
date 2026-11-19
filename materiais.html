@@ -1,0 +1,2469 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Materiais de Estudo | Preparatório ACS</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.material-page {
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px;
+}
+
+.material-header {
+    background: linear-gradient(135deg, #123b65, #2563a0);
+    color: white;
+    padding: 30px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+}
+
+.material-header h1 {
+    margin: 0 0 10px;
+    font-size: 26px;
+}
+
+.material-header p {
+    margin: 0;
+    opacity: .9;
+    line-height: 1.6;
+}
+
+.search-material {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #dce3ec;
+    border-radius: 10px;
+    font-size: 15px;
+    margin: 10px 0 25px;
+    box-sizing: border-box;
+}
+
+.subject-card {
+    background: white;
+    padding: 22px;
+    border-radius: 13px;
+    margin-bottom: 22px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.06);
+    border: 1px solid #e5eaf0;
+}
+
+.subject-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.subject-title h2 {
+    font-size: 21px;
+    color: #123b65;
+    margin: 0;
+}
+
+.subject-icon {
+    font-size: 28px;
+}
+
+.subject-description {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.topic {
+    border: 1px solid #e5eaf0;
+    border-radius: 9px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.topic summary {
+    padding: 15px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #243b53;
+    background: #f8fafc;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.topic summary::-webkit-details-marker {
+    display: none;
+}
+
+.topic summary::after {
+    content: "+";
+    font-size: 22px;
+    color: #2563a0;
+}
+
+.topic[open] > summary::after {
+    content: "−";
+}
+
+.topic summary:hover {
+    background: #edf4fb;
+}
+
+.lesson-content {
+    padding: 18px;
+    line-height: 1.75;
+    color: #334155;
+    font-size: 15px;
+}
+
+.lesson-content h3 {
+    color: #123b65;
+    margin-top: 18px;
+}
+
+.lesson-content h3:first-child {
+    margin-top: 0;
+}
+
+.lesson-content ul,
+.lesson-content ol {
+    padding-left: 23px;
+}
+
+.lesson-content li {
+    margin-bottom: 6px;
+}
+
+.video-lesson-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 7px;
+    background: #c62828;
+    color: white;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.video-lesson-action:hover {
+    background: #a91f1f;
+}
+
+.video-lesson-action:focus-visible,
+.video-player-close:focus-visible {
+    outline: 3px solid #2563a0;
+    outline-offset: 3px;
+}
+
+.video-player {
+    margin: 0 0 18px;
+}
+
+.video-player iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: 8px;
+    background: #0f172a;
+}
+
+.video-player-close {
+    display: block;
+    margin: 0 0 8px auto;
+    padding: 7px 11px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background: white;
+    color: #334155;
+    font: inherit;
+    cursor: pointer;
+}
+
+.example {
+    background: #eff6ff;
+    border-left: 4px solid #2563a0;
+    padding: 12px 15px;
+    margin: 14px 0;
+    border-radius: 5px;
+}
+
+.important {
+    background: #fff7e6;
+    border-left: 4px solid #e6a23c;
+    padding: 12px 15px;
+    margin: 14px 0;
+    border-radius: 5px;
+}
+
+.subject-count {
+    margin-left: auto;
+    background: #edf4fb;
+    color: #2563a0;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.lesson-footer {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 9px;
+    margin-top: 20px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.no-results {
+    display: none;
+    padding: 20px;
+    text-align: center;
+    color: #64748b;
+}
+
+@media(max-width: 600px) {
+    .material-page { padding: 12px; }
+    .material-header { padding: 22px; }
+    .subject-card { padding: 15px; }
+    .subject-title h2 { font-size: 18px; }
+    .topic summary { font-size: 14px; }
+}
+</style>
+</head>
+
+<body data-requires-auth="true">
+
+<!-- CONTEÚDO PRINCIPAL -->
+<main class="material-page">
+
+    <header class="material-header">
+        <h1>📚 Materiais de Estudo</h1>
+        <p>
+            Preparatório para o Concurso Público Municipal de
+            Canto do Buriti – PI | Agente Comunitário de Saúde.
+            Estude cada assunto através de aulas organizadas,
+            exemplos e resumos.
+        </p>
+    </header>
+
+    <input
+        type="text"
+        id="searchMaterial"
+        class="search-material"
+        placeholder="🔎 Pesquisar aula ou assunto..."
+        oninput="filtrarAulas()"
+    >
+
+    <div id="noResults" class="no-results">
+        Nenhuma aula encontrada com esse termo.
+    </div>
+
+    <!-- LÍNGUA PORTUGUESA -->
+    <section class="subject-card searchable">
+
+        <div class="subject-title">
+            <span class="subject-icon">📖</span>
+            <h2>Língua Portuguesa</h2>
+            <span class="subject-count">14 assuntos</span>
+        </div>
+
+        <p class="subject-description">
+            Estude interpretação textual, ortografia, gramática
+            e os principais elementos da língua portuguesa.
+        </p>
+
+        <details class="topic">
+            <summary>01. Leitura e interpretação de texto</summary>
+            <div class="lesson-content">
+                <h3> assista essa playlist com as 6 aulas no youtube !!! </h3>
+                <h3>O que é interpretação de texto?</h3>
+                Interpretar um texto significa compreender as
+                informações apresentadas, identificar a mensagem
+                principal e perceber aquilo que o autor deseja comunicar.
+
+                <h3>O que devemos observar?</h3>
+                <ul>
+                    <li>Tema principal do texto.</li>
+                    <li>Assunto abordado.</li>
+                    <li>Finalidade do texto.</li>
+                    <li>Informações explícitas: estão escritas diretamente.</li>
+                    <li>Informações implícitas: precisam ser deduzidas.</li>
+                    <li>Opiniões e fatos.</li>
+                    <li>Sentido das palavras no contexto.</li>
+                </ul>
+
+                <div class="example">
+                    <strong>Exemplo:</strong><br>
+                    "João saiu de casa levando um guarda-chuva,
+                    pois o céu estava muito escuro."<br><br>
+                    Podemos concluir que João acreditava que
+                    poderia chover.
+                </div>
+
+                <div class="important">
+                    <strong>Dica para a prova:</strong>
+                    Leia primeiro o texto com atenção. Não responda
+                    apenas com base em sua opinião pessoal.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>02. Ortografia</summary>
+            <div class="lesson-content">
+                <h3>O que é ortografia?</h3>
+                É o conjunto de regras que determina a escrita
+                correta das palavras.
+
+                <h3>Principais dificuldades</h3>
+                <ul>
+                    <li>Uso de S, SS, C, Ç e SC.</li>
+                    <li>Uso de G e J.</li>
+                    <li>Uso de X e CH.</li>
+                    <li>Uso de Z e S.</li>
+                    <li>Emprego de M antes de P e B.</li>
+                    <li>Palavras com H inicial.</li>
+                </ul>
+
+                <div class="example">
+                    <strong>Exemplos:</strong><br>
+                    Certo: prevenção, exceção, pesquisa,
+                    nascimento e benefício.<br>
+                    Errado: prevensão, excessão, pesquiza.
+                </div>
+
+                <div class="important">
+                    Atenção às palavras utilizadas em textos
+                    sobre saúde, prevenção e vacinação.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>03. Acentuação gráfica</summary>
+            <div class="lesson-content">
+                <h3>O que é acentuação?</h3>
+                São regras que determinam quando uma palavra
+                deve receber acento gráfico.
+
+                <h3>Classificação pela sílaba tônica</h3>
+                <ul>
+                    <li><strong>Oxítonas:</strong> última sílaba forte.
+                    Ex.: café, também, cipó.</li>
+                    <li><strong>Paroxítonas:</strong> penúltima sílaba forte.
+                    Ex.: fácil, lápis, saúde.</li>
+                    <li><strong>Proparoxítonas:</strong> antepenúltima
+                    sílaba forte. Todas são acentuadas.
+                    Ex.: médico, matemática, lâmpada.</li>
+                </ul>
+
+                <div class="important">
+                    Nem toda sílaba tônica recebe acento gráfico.
+                    Acento tônico é a pronúncia mais forte;
+                    acento gráfico é o sinal escrito.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>04. Encontros vocálicos</summary>
+            <div class="lesson-content">
+                São encontros de sons vocálicos em uma palavra.
+
+                <ul>
+                    <li><strong>Ditongo:</strong> duas vogais em uma
+                    mesma sílaba. Ex.: pai, céu, noite.</li>
+                    <li><strong>Tritongo:</strong> três sons vocálicos
+                    na mesma sílaba. Ex.: Paraguai, iguais.</li>
+                    <li><strong>Hiato:</strong> duas vogais em sílabas
+                    diferentes. Ex.: sa-ú-de, pa-ís, sa-í-da.</li>
+                </ul>
+
+                <div class="example">
+                    Saúde: sa-ú-de. O encontro entre A e U é um hiato,
+                    pois as vogais ficam em sílabas diferentes.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>05. Encontros consonantais</summary>
+            <div class="lesson-content">
+                Ocorrem quando duas ou mais consoantes aparecem
+                juntas, mantendo seus sons.
+
+                <div class="example">
+                    <strong>Exemplos:</strong><br>
+                    prato, bloco, atleta, flor, problema e
+                    transporte.
+                </div>
+
+                Podem aparecer na mesma sílaba ou em sílabas diferentes.
+
+                <ul>
+                    <li>Pra-to: encontro na mesma sílaba.</li>
+                    <li>Ad-vo-ga-do: consoantes em sílabas diferentes.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>06. Dígrafos</summary>
+            <div class="lesson-content">
+                Dígrafo é o encontro de duas letras que representam
+                um único som.
+
+                <h3>Dígrafos consonantais</h3>
+                <ul>
+                    <li>CH: chuva.</li>
+                    <li>LH: folha.</li>
+                    <li>NH: manhã.</li>
+                    <li>RR: carro.</li>
+                    <li>SS: pássaro.</li>
+                    <li>QU: queijo (quando o U não é pronunciado).</li>
+                    <li>GU: guerra (quando o U não é pronunciado).</li>
+                </ul>
+
+                <h3>Dígrafos vocálicos</h3>
+                <ul>
+                    <li>AM: campo.</li>
+                    <li>AN: canto.</li>
+                    <li>EM: tempo.</li>
+                    <li>EN: pente.</li>
+                    <li>IM: limpo.</li>
+                    <li>IN: tinta.</li>
+                    <li>OM: sombra.</li>
+                    <li>ON: onda.</li>
+                    <li>UM: mundo.</li>
+                    <li>UN: fundo.</li>
+                </ul>
+                <div class="important">
+                    Dígrafo tem duas letras representando um único som.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>07. Divisão silábica</summary>
+            <div class="lesson-content">
+                Dividir uma palavra em sílabas significa separar
+                suas partes sonoras.
+
+                <div class="example">
+                    <strong>Exemplos:</strong><br>
+                    Casa: ca-sa<br>
+                    Escola: es-co-la<br>
+                    Saúde: sa-ú-de<br>
+                    Professor: pro-fes-sor<br>
+                    Comunidade: co-mu-ni-da-de
+                </div>
+
+                <h3>Regras importantes</h3>
+                <ul>
+                    <li>Não se separa ditongo.</li>
+                    <li>O hiato é separado.</li>
+                    <li>Dígrafos como CH, LH e NH não se separam.</li>
+                    <li>RR e SS são separados entre as sílabas.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>08. Adjetivos</summary>
+            <div class="lesson-content">
+                Adjetivo é a palavra que caracteriza o substantivo,
+                indicando qualidade, estado ou característica.
+
+                <div class="example">
+                    Casa bonita.<br>
+                    Criança saudável.<br>
+                    Profissional dedicado.
+                </div>
+
+                <h3>Flexão dos adjetivos</h3>
+                <ul>
+                    <li>Gênero: bonito / bonita.</li>
+                    <li>Número: bonito / bonitos.</li>
+                    <li>Grau: bonito / bonitíssimo.</li>
+                </ul>
+
+                <h3>Graus</h3>
+                <ul>
+                    <li>Comparativo: João é mais alto que Pedro.</li>
+                    <li>Superlativo: João é muito alto.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>09. Artigos</summary>
+            <div class="lesson-content">
+                Artigos são palavras que acompanham os substantivos,
+                determinando ou indeterminando seu sentido.
+
+                <h3>Artigos definidos</h3>
+                O, A, OS, AS.
+
+                <div class="example">
+                    O agente visitou a família.
+                </div>
+
+                <h3>Artigos indefinidos</h3>
+                UM, UMA, UNS, UMAS.
+
+                <div class="example">
+                    Uma família procurou atendimento.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>10. Verbos: tempo, número, pessoa e conjugação</summary>
+            <div class="lesson-content">
+                Verbo é a palavra que expressa ação, estado,
+                fenômeno da natureza ou ocorrência.
+
+                <h3>Tempos verbais</h3>
+                <ul>
+                    <li>Presente: Eu estudo.</li>
+                    <li>Pretérito: Eu estudei.</li>
+                    <li>Futuro: Eu estudarei.</li>
+                </ul>
+
+                <h3>Pessoas do discurso</h3>
+                <ul>
+                    <li>1ª pessoa: eu / nós.</li>
+                    <li>2ª pessoa: tu / vós.</li>
+                    <li>3ª pessoa: ele, ela / eles, elas.</li>
+                </ul>
+
+                <h3>Número</h3>
+                <ul>
+                    <li>Singular: eu trabalho.</li>
+                    <li>Plural: nós trabalhamos.</li>
+                </ul>
+
+                <h3>Conjugações</h3>
+                <ul>
+                    <li>1ª conjugação: verbos terminados em AR.
+                    Ex.: estudar.</li>
+                    <li>2ª conjugação: verbos terminados em ER.
+                    Ex.: aprender.</li>
+                    <li>3ª conjugação: verbos terminados em IR.
+                    Ex.: partir.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>11. Sinônimos e antônimos</summary>
+            <div class="lesson-content">
+                <strong>Sinônimos:</strong> palavras com sentidos
+                iguais ou semelhantes.
+
+                <div class="example">
+                    Feliz = alegre.<br>
+                    Bonito = belo.<br>
+                    Rápido = veloz.
+                </div>
+
+                <strong>Antônimos:</strong> palavras com sentidos
+                opostos.
+
+                <div class="example">
+                    Claro ≠ escuro.<br>
+                    Alto ≠ baixo.<br>
+                    Entrar ≠ sair.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>12. Pontuação</summary>
+            <div class="lesson-content">
+                A pontuação organiza as ideias e facilita a compreensão.
+
+                <ul>
+                    <li><strong>Ponto final (.):</strong> encerra uma frase.</li>
+                    <li><strong>Vírgula (,):</strong> separa elementos
+                    e organiza informações.</li>
+                    <li><strong>Interrogação (?):</strong> indica pergunta.</li>
+                    <li><strong>Exclamação (!):</strong> expressa emoção
+                    ou intensidade.</li>
+                    <li><strong>Dois-pontos (:):</strong> introduzem
+                    explicações, listas ou falas.</li>
+                    <li><strong>Travessão (—):</strong> pode indicar
+                    fala ou destacar informações.</li>
+                </ul>
+
+                <div class="example">
+                    Você estudou hoje?<br>
+                    Sim, estudei bastante!
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>13. Substantivos: classificação e flexão</summary>
+            <div class="lesson-content">
+                Substantivo é a palavra que nomeia pessoas,
+                animais, objetos, lugares, sentimentos e ideias.
+
+                <h3>Classificações</h3>
+                <ul>
+                    <li>Comum: cidade, pessoa, cachorro.</li>
+                    <li>Próprio: Brasil, Maria, Teresina.</li>
+                    <li>Concreto: mesa, árvore, casa.</li>
+                    <li>Abstrato: amor, tristeza, coragem.</li>
+                    <li>Coletivo: cardume, enxame, alcateia.</li>
+                    <li>Simples: pedra.</li>
+                    <li>Composto: guarda-chuva.</li>
+                </ul>
+
+                <h3>Flexões</h3>
+                <ul>
+                    <li>Gênero: menino / menina.</li>
+                    <li>Número: casa / casas.</li>
+                    <li>Grau: casa / casarão / casinha.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>14. Regras gramaticais</summary>
+            <div class="lesson-content">
+                A gramática estabelece regras para o uso adequado
+                da língua portuguesa.
+
+                <h3>Concordância nominal</h3>
+                O artigo, o adjetivo e outras palavras devem concordar
+                com o substantivo.
+
+                <div class="example">
+                    As meninas estudiosas.<br>
+                    Os meninos estudiosos.
+                </div>
+
+                <h3>Concordância verbal</h3>
+                O verbo deve concordar com o sujeito.
+
+                <div class="example">
+                    A criança brinca.<br>
+                    As crianças brincam.
+                </div>
+
+                <h3>Uso de por que, porque, por quê e porquê</h3>
+                <ul>
+                    <li>Por que: usado em perguntas.
+                    Ex.: Por que você faltou?</li>
+                    <li>Porque: indica explicação.
+                    Ex.: Faltei porque estava doente.</li>
+                    <li>Por quê: aparece no final de perguntas.
+                    Ex.: Você faltou por quê?</li>
+                    <li>Porquê: significa motivo.
+                    Ex.: Não entendi o porquê.</li>
+                </ul>
+            </div>
+        </details>
+
+    </section>
+
+    <!-- MATEMÁTICA -->
+    <section class="subject-card searchable">
+
+        <div class="subject-title">
+            <span class="subject-icon">🔢</span>
+            <h2>Matemática</h2>
+            <span class="subject-count">17 assuntos</span>
+        </div>
+
+        <p class="subject-description">
+            Aprenda operações, medidas, números, geometria e
+            resolução de problemas do cotidiano.
+        </p>
+
+        <details class="topic">
+            <summary>01. Quantidade e comparação</summary>
+            <div class="lesson-content">
+                Quantidade representa o número de elementos
+                de um conjunto.
+
+                <h3>Conceitos importantes</h3>
+                <ul>
+                    <li>Maior que: &gt;</li>
+                    <li>Menor que: &lt;</li>
+                    <li>Igual a: =</li>
+                    <li>Antecessor: número que vem antes.</li>
+                    <li>Sucessor: número que vem depois.</li>
+                </ul>
+                <div class="example">
+                    15 é maior que 10.<br>
+                    8 é menor que 12.<br>
+                    O antecessor de 20 é 19.<br>
+                    O sucessor de 20 é 21.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>02. Adição</summary>
+            <div class="lesson-content">
+                Adição é a operação utilizada para juntar
+                ou acrescentar quantidades.
+
+                <div class="example">
+                    Uma unidade de saúde realizou 125 atendimentos
+                    pela manhã e 75 à tarde.<br>
+                    125 + 75 = 200 atendimentos.
+                </div>
+                O sinal utilizado é +.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>03. Subtração</summary>
+            <div class="lesson-content">
+                Subtração é utilizada para retirar, comparar
+                ou descobrir a diferença entre quantidades.
+
+                <div class="example">
+                    Uma equipe tinha 150 fichas e utilizou 45.<br>
+                    150 - 45 = 105 fichas restantes.
+                </div>
+                O sinal utilizado é −.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>04. Multiplicação</summary>
+            <div class="lesson-content">
+                Multiplicação representa a soma de parcelas iguais.
+
+                <div class="example">
+                    Uma caixa contém 12 máscaras. Quantas máscaras
+                    existem em 5 caixas?<br>
+                    12 × 5 = 60 máscaras.
+                </div>
+                O sinal utilizado é ×.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>05. Divisão</summary>
+            <div class="lesson-content">
+                Divisão é utilizada para repartir ou distribuir
+                uma quantidade em partes iguais.
+
+                <div class="example">
+                    48 unidades serão distribuídas entre 6 equipes.<br>
+                    48 ÷ 6 = 8 unidades para cada equipe.
+                </div>
+                O sinal utilizado é ÷.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>06. Números pares e ímpares</summary>
+            <div class="lesson-content">
+                <strong>Pares:</strong> podem ser divididos por 2
+                sem deixar resto.
+
+                Exemplos: 2, 4, 6, 8, 10, 12.
+
+                <br><br>
+                <strong>Ímpares:</strong> quando divididos por 2,
+                deixam resto 1.
+
+                Exemplos: 1, 3, 5, 7, 9, 11.
+
+                <div class="important">
+                    Dica: números terminados em 0, 2, 4, 6 ou 8
+                    são pares.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>07. Sequência numérica</summary>
+            <div class="lesson-content">
+                Sequência numérica é uma organização de números
+                seguindo determinada regra.
+
+                <div class="example">
+                    2, 4, 6, 8, 10...<br>
+                    Regra: acrescentar 2.<br><br>
+                    5, 10, 15, 20...<br>
+                    Regra: acrescentar 5.
+                </div>
+                Observe a diferença entre os números para
+                descobrir a regra da sequência.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>08. Algarismos romanos</summary>
+            <div class="lesson-content">
+                Os números romanos utilizam letras para representar
+                quantidades.
+
+                <ul>
+                    <li>I = 1</li>
+                    <li>V = 5</li>
+                    <li>X = 10</li>
+                    <li>L = 50</li>
+                    <li>C = 100</li>
+                    <li>D = 500</li>
+                    <li>M = 1.000</li>
+                </ul>
+
+                <div class="example">
+                    II = 2<br>
+                    III = 3<br>
+                    IV = 4<br>
+                    VI = 6<br>
+                    IX = 9<br>
+                    XII = 12<br>
+                    XX = 20
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>09. Sistema monetário e problemas com dinheiro</summary>
+            <div class="lesson-content">
+                No Brasil, a moeda oficial é o Real (R$).
+
+                <h3>Relações importantes</h3>
+                <ul>
+                    <li>1 real = 100 centavos.</li>
+                    <li>R$ 2,50 = 250 centavos.</li>
+                    <li>R$ 10,00 = 1.000 centavos.</li>
+                </ul>
+
+                <div class="example">
+                    Uma pessoa comprou produtos por R$ 35,00
+                    e pagou com R$ 50,00.<br>
+                    Troco: 50 - 35 = R$ 15,00.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>10. Comprimento</summary>
+            <div class="lesson-content">
+                Comprimento é a medida de distância entre dois pontos.
+
+                <h3>Unidades principais</h3>
+                <ul>
+                    <li>Milímetro (mm).</li>
+                    <li>Centímetro (cm).</li>
+                    <li>Metro (m).</li>
+                    <li>Quilômetro (km).</li>
+                </ul>
+
+                <div class="example">
+                    1 metro = 100 centímetros.<br>
+                    1 quilômetro = 1.000 metros.<br>
+                    1 centímetro = 10 milímetros.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>11. Massa</summary>
+            <div class="lesson-content">
+                Massa é uma grandeza utilizada para medir
+                a quantidade de matéria de um corpo.
+
+                <h3>Unidades principais</h3>
+                <ul>
+                    <li>Grama (g).</li>
+                    <li>Quilograma (kg).</li>
+                    <li>Miligrama (mg).</li>
+                </ul>
+
+                <div class="example">
+                    1 quilograma = 1.000 gramas.<br>
+                    1 grama = 1.000 miligramas.
+                </div>
+
+                Exemplos cotidianos: pesagem de alimentos,
+                frutas e outros produtos.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>12. Volume e capacidade</summary>
+            <div class="lesson-content">
+                Volume é o espaço ocupado por um corpo.
+                Capacidade indica quanto um recipiente pode conter.
+
+                <h3>Unidades de capacidade</h3>
+                <ul>
+                    <li>Litro (L).</li>
+                    <li>Mililitro (mL).</li>
+                </ul>
+
+                <div class="example">
+                    1 litro = 1.000 mililitros.<br>
+                    Uma garrafa de 2 litros contém 2.000 mL.
+                </div>
+
+                <div class="important">
+                    Não confunda massa, volume e capacidade.
+                    São grandezas diferentes.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>13. Altura</summary>
+            <div class="lesson-content">
+                Altura é uma medida de comprimento na direção vertical.
+
+                <div class="example">
+                    Ana mede 1,50 m e João mede 1,70 m.<br>
+                    João é 20 centímetros mais alto que Ana.
+                </div>
+
+                Para comparar alturas, transforme as medidas
+                para a mesma unidade antes de calcular.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>14. Abreviaturas do sistema de medidas</summary>
+            <div class="lesson-content">
+                Memorize as principais abreviaturas:
+
+                <ul>
+                    <li>km = quilômetro.</li>
+                    <li>m = metro.</li>
+                    <li>cm = centímetro.</li>
+                    <li>mm = milímetro.</li>
+                    <li>kg = quilograma.</li>
+                    <li>g = grama.</li>
+                    <li>mg = miligrama.</li>
+                    <li>L = litro.</li>
+                    <li>mL = mililitro.</li>
+                </ul>
+
+                <div class="important">
+                    Atenção: kg mede massa, m mede comprimento
+                    e L mede capacidade.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>15. Formas geométricas</summary>
+            <div class="lesson-content">
+                As formas geométricas representam figuras
+                encontradas na matemática e no cotidiano.
+
+                <h3>Figuras planas</h3>
+                <ul>
+                    <li>Quadrado: quatro lados iguais.</li>
+                    <li>Retângulo: quatro ângulos retos.</li>
+                    <li>Triângulo: três lados.</li>
+                    <li>Círculo: região plana delimitada por uma circunferência.</li>
+                    <li>Losango: quatro lados iguais.</li>
+                </ul>
+
+                <h3>Sólidos geométricos</h3>
+                <ul>
+                    <li>Cubo: seis faces quadradas.</li>
+                    <li>Esfera: formato de uma bola.</li>
+                    <li>Cilindro: duas bases circulares.</li>
+                    <li>Cone: uma base circular e um vértice.</li>
+                    <li>Paralelepípedo: formato de uma caixa retangular.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>16. Relógio e medidas de tempo</summary>
+            <div class="lesson-content">
+                O tempo pode ser medido em segundos, minutos,
+                horas, dias e outras unidades.
+
+                <ul>
+                    <li>1 minuto = 60 segundos.</li>
+                    <li>1 hora = 60 minutos.</li>
+                    <li>1 dia = 24 horas.</li>
+                    <li>1 semana = 7 dias.</li>
+                </ul>
+
+                <div class="example">
+                    Uma visita começou às 8h e terminou às 10h30.<br>
+                    Duração: 2 horas e 30 minutos.
+                </div>
+
+                <h3>Relógio de ponteiros</h3>
+                O ponteiro menor indica as horas e o maior
+                indica os minutos.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>17. Frações e partes de desenhos</summary>
+            <div class="lesson-content">
+                Fração representa uma ou mais partes de um todo
+                dividido em partes iguais.
+
+                <h3>Elementos da fração</h3>
+                <p>O número de cima é o numerador. O número
+                de baixo é o denominador.</p>
+
+                <div class="example">
+                    1/2 = uma de duas partes.<br>
+                    1/3 = uma de três partes.<br>
+                    1/4 = uma de quatro partes.<br>
+                    3/4 = três de quatro partes.
+                </div>
+
+                <h3>Exemplo visual</h3>
+                <p>Figura dividida em quatro partes:</p>
+                <div style="font-size:30px;letter-spacing:5px;">
+                    🟦 🟦 ⬜ ⬜
+                </div>
+                Duas das quatro partes estão pintadas:
+                2/4 = 1/2.
+            </div>
+        </details>
+
+    </section>
+
+    <!-- CONHECIMENTOS ESPECÍFICOS ACS -->
+    <section class="subject-card searchable">
+
+        <div class="subject-title">
+            <span class="subject-icon">🏥</span>
+            <h2>Conhecimentos Específicos – ACS</h2>
+            <span class="subject-count">30+ assuntos</span>
+        </div>
+
+        <p class="subject-description">
+            Conteúdos fundamentais sobre o SUS, atuação do
+            Agente Comunitário de Saúde, atenção básica,
+            prevenção de doenças e políticas públicas.
+        </p>
+
+        <details class="topic">
+            <summary>01. Sistema Único de Saúde – SUS</summary>
+            <div class="lesson-content">
+                <h3>O que é o SUS?</h3>
+                O Sistema Único de Saúde é o sistema público
+                brasileiro responsável por garantir o direito
+                à saúde da população.
+
+                Foi instituído pela Constituição Federal de 1988
+                e regulamentado principalmente pelas Leis
+                8.080/1990 e 8.142/1990.
+
+                <h3>Princípios doutrinários</h3>
+                <ul>
+                    <li><strong>Universalidade:</strong> todos têm
+                    direito ao acesso à saúde.</li>
+                    <li><strong>Integralidade:</strong> atendimento
+                    considerando as necessidades da pessoa de forma
+                    ampla, incluindo promoção, prevenção e tratamento.</li>
+                    <li><strong>Equidade:</strong> oferecer atenção
+                    conforme as diferentes necessidades, buscando
+                    reduzir desigualdades.</li>
+                </ul>
+
+                <h3>Diretrizes organizativas</h3>
+                <ul>
+                    <li>Descentralização.</li>
+                    <li>Regionalização e hierarquização.</li>
+                    <li>Participação da comunidade.</li>
+                </ul>
+
+                <div class="important">
+                    Atenção para a prova: não confunda princípios
+                    doutrinários com diretrizes organizativas.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>02. Processo saúde-doença e seus determinantes</summary>
+            <div class="lesson-content">
+                Saúde não significa apenas ausência de doenças.
+                Envolve bem-estar físico, mental e social.
+
+                O processo saúde-doença é influenciado por
+                diversos fatores:
+
+                <ul>
+                    <li>Condições de moradia.</li>
+                    <li>Alimentação.</li>
+                    <li>Educação.</li>
+                    <li>Renda e trabalho.</li>
+                    <li>Saneamento básico.</li>
+                    <li>Meio ambiente.</li>
+                    <li>Acesso aos serviços de saúde.</li>
+                    <li>Condições culturais e sociais.</li>
+                </ul>
+
+                <div class="example">
+                    Uma comunidade sem água tratada pode apresentar
+                    maior risco de doenças transmitidas pela água.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>03. Visita domiciliar</summary>
+            <div class="lesson-content">
+                A visita domiciliar é uma das principais atividades
+                do Agente Comunitário de Saúde.
+
+                <h3>Objetivos</h3>
+                <ul>
+                    <li>Acompanhar famílias.</li>
+                    <li>Identificar situações de risco.</li>
+                    <li>Orientar sobre prevenção de doenças.</li>
+                    <li>Identificar necessidades de saúde.</li>
+                    <li>Fortalecer o vínculo com a comunidade.</li>
+                    <li>Encaminhar situações que necessitam de atendimento.</li>
+                </ul>
+
+                <h3>Durante a visita</h3>
+                <ol>
+                    <li>Apresentar-se e explicar o objetivo.</li>
+                    <li>Ouvir os moradores com respeito.</li>
+                    <li>Observar as condições do ambiente.</li>
+                    <li>Registrar as informações necessárias.</li>
+                    <li>Orientar e encaminhar quando necessário.</li>
+                </ol>
+
+                <div class="important">
+                    O ACS deve respeitar a privacidade, o sigilo
+                    e a autonomia das famílias.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>04. Cadastramento familiar e territorial</summary>
+            <div class="lesson-content">
+                O cadastramento permite conhecer as famílias,
+                os moradores e as características do território.
+
+                <h3>Finalidades</h3>
+                <ul>
+                    <li>Identificar as famílias da área.</li>
+                    <li>Conhecer condições de moradia.</li>
+                    <li>Identificar grupos prioritários.</li>
+                    <li>Planejar ações de saúde.</li>
+                    <li>Acompanhar mudanças na população.</li>
+                </ul>
+
+                Os dados são registrados nos instrumentos e
+                sistemas oficiais utilizados pela Atenção Primária,
+                como os vinculados ao e-SUS APS.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>05. Territorialização, microárea e área de abrangência</summary>
+            <div class="lesson-content">
+                <strong>Territorialização:</strong> processo de conhecer
+                e organizar o território onde os serviços de saúde atuam.
+
+                <strong>Área de abrangência:</strong> espaço geográfico
+                sob responsabilidade de uma equipe de saúde.
+
+                <strong>Microárea:</strong> subdivisão do território
+                acompanhada pelo ACS.
+
+                <div class="example">
+                    Uma equipe pode atender um bairro dividido
+                    em várias microáreas, cada uma acompanhada
+                    por um agente comunitário.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>06. Interpretação demográfica</summary>
+            <div class="lesson-content">
+                Demografia é o estudo das características
+                e da dinâmica da população.
+
+                <h3>Principais indicadores</h3>
+                <ul>
+                    <li>Natalidade: frequência de nascimentos.</li>
+                    <li>Mortalidade: frequência de óbitos.</li>
+                    <li>Expectativa de vida: média estimada de anos de vida.</li>
+                    <li>Envelhecimento populacional.</li>
+                    <li>Migração: deslocamento de pessoas.</li>
+                    <li>Crescimento populacional.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>07. Indicadores epidemiológicos</summary>
+            <div class="lesson-content">
+                São medidas utilizadas para avaliar a ocorrência
+                e a distribuição de doenças e agravos na população.
+
+                <ul>
+                    <li><strong>Incidência:</strong> número de casos novos
+                    em determinado período.</li>
+                    <li><strong>Prevalência:</strong> total de casos
+                    existentes em determinado momento ou período.</li>
+                    <li><strong>Mortalidade:</strong> frequência de óbitos.</li>
+                    <li><strong>Letalidade:</strong> proporção de pessoas
+                    com determinada doença que morreram em decorrência dela.</li>
+                </ul>
+
+                <div class="important">
+                    Incidência = casos novos.<br>
+                    Prevalência = casos existentes.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>08. Levantamento das condições de vida e saúde</summary>
+            <div class="lesson-content">
+                O levantamento das condições de vida e saúde
+                permite identificar as necessidades da comunidade.
+
+                <h3>Principais técnicas</h3>
+                <ul>
+                    <li>Visitas domiciliares.</li>
+                    <li>Entrevistas com moradores.</li>
+                    <li>Observação do ambiente.</li>
+                    <li>Consulta a registros de saúde.</li>
+                    <li>Identificação de grupos vulneráveis.</li>
+                    <li>Mapeamento do território.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>09. Priorização das ações de saúde</summary>
+            <div class="lesson-content">
+                A equipe deve identificar quais problemas precisam
+                de atenção prioritária.
+
+                <h3>Critérios de priorização</h3>
+                <ul>
+                    <li>Gravidade do problema.</li>
+                    <li>Número de pessoas afetadas.</li>
+                    <li>Risco de agravamento.</li>
+                    <li>Condições socioeconômicas.</li>
+                    <li>Vulnerabilidade social.</li>
+                    <li>Possibilidade de intervenção.</li>
+                </ul>
+
+                Exemplo: uma comunidade sem saneamento e com
+                aumento de casos de diarreia pode exigir
+                intervenção prioritária.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>10. Eficácia, eficiência e efetividade</summary>
+            <div class="lesson-content">
+                <ul>
+                    <li><strong>Eficácia:</strong> capacidade de alcançar
+                    o resultado pretendido.</li>
+                    <li><strong>Eficiência:</strong> alcançar resultados
+                    utilizando adequadamente os recursos.</li>
+                    <li><strong>Efetividade:</strong> produzir mudanças
+                    reais e positivas na população.</li>
+                </ul>
+
+                <div class="example">
+                    Eficácia: uma campanha alcança a meta de vacinação.<br>
+                    Eficiência: a campanha alcança a meta com bom uso
+                    de recursos.<br>
+                    Efetividade: a vacinação contribui para reduzir
+                    a ocorrência da doença.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>11. Qualidade da atenção à saúde</summary>
+            <div class="lesson-content">
+                A qualidade do atendimento envolve:
+
+                <ul>
+                    <li><strong>Acessibilidade:</strong> facilidade
+                    de acesso aos serviços.</li>
+                    <li><strong>Humanização:</strong> respeito,
+                    acolhimento e dignidade.</li>
+                    <li><strong>Satisfação do usuário:</strong>
+                    percepção positiva sobre o atendimento.</li>
+                    <li><strong>Satisfação do trabalhador:</strong>
+                    condições adequadas de trabalho.</li>
+                    <li><strong>Equidade:</strong> atenção conforme
+                    as necessidades de cada pessoa.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>12. Meio ambiente e saneamento básico</summary>
+            <div class="lesson-content">
+                O saneamento básico é fundamental para prevenir
+                doenças e melhorar a qualidade de vida.
+
+                <h3>Componentes</h3>
+                <ul>
+                    <li>Abastecimento de água potável.</li>
+                    <li>Coleta e tratamento de esgoto.</li>
+                    <li>Limpeza urbana e manejo de resíduos sólidos.</li>
+                    <li>Drenagem e manejo das águas pluviais.</li>
+                </ul>
+
+                <h3>Medidas preventivas</h3>
+                <ul>
+                    <li>Armazenar água corretamente.</li>
+                    <li>Evitar água parada.</li>
+                    <li>Descartar lixo adequadamente.</li>
+                    <li>Manter quintais limpos.</li>
+                    <li>Proteger alimentos e reservatórios.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>13. IST e infecção pelo HIV</summary>
+            <div class="lesson-content">
+                IST significa Infecções Sexualmente Transmissíveis.
+
+                <h3>Exemplos</h3>
+                <ul>
+                    <li>HIV.</li>
+                    <li>Sífilis.</li>
+                    <li>Gonorreia.</li>
+                    <li>Clamídia.</li>
+                    <li>HPV.</li>
+                    <li>Herpes genital.</li>
+                </ul>
+
+                <h3>Prevenção</h3>
+                <ul>
+                    <li>Uso de preservativos.</li>
+                    <li>Testagem regular conforme indicação.</li>
+                    <li>Vacinação contra HPV e hepatite B.</li>
+                    <li>Diagnóstico e tratamento adequados.</li>
+                </ul>
+
+                <div class="important">
+                    HIV é o vírus da imunodeficiência humana.
+                    AIDS é uma condição clínica que pode ocorrer
+                    em estágios avançados da infecção não controlada.
+                    Uma pessoa vivendo com HIV não necessariamente
+                    tem AIDS.
+                </div>
+
+                O ACS deve orientar sem discriminação e preservar
+                o sigilo das informações.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>14. Tuberculose</summary>
+            <div class="lesson-content">
+                É uma doença infecciosa causada pela bactéria
+                Mycobacterium tuberculosis.
+
+                <h3>Principais sintomas</h3>
+                <ul>
+                    <li>Tosse persistente, especialmente por três
+                    semanas ou mais.</li>
+                    <li>Febre, geralmente no período da tarde.</li>
+                    <li>Suor noturno.</li>
+                    <li>Emagrecimento.</li>
+                    <li>Cansaço.</li>
+                </ul>
+
+                <h3>Transmissão e prevenção</h3>
+                A transmissão ocorre pelo ar, principalmente
+                por partículas expelidas por pessoas com tuberculose
+                pulmonar ou laríngea transmissível.
+
+                O diagnóstico e o tratamento devem ser realizados
+                pelos serviços de saúde.
+
+                O ACS pode identificar suspeitas, orientar e
+                acompanhar a continuidade do tratamento.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>15. Hanseníase</summary>
+            <div class="lesson-content">
+                A hanseníase é uma doença infecciosa causada
+                pela bactéria Mycobacterium leprae.
+
+                <h3>Principais sinais</h3>
+                <ul>
+                    <li>Manchas na pele com alteração de sensibilidade.</li>
+                    <li>Formigamento.</li>
+                    <li>Dormência.</li>
+                    <li>Fraqueza muscular.</li>
+                    <li>Alterações nos nervos periféricos.</li>
+                </ul>
+
+                A doença tem tratamento e cura.
+
+                <div class="important">
+                    O reconhecimento precoce é importante para
+                    evitar incapacidades físicas e reduzir a transmissão.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>16. Dengue</summary>
+            <div class="lesson-content">
+                A dengue é uma doença viral transmitida principalmente
+                pela picada da fêmea infectada do mosquito Aedes aegypti.
+
+                <h3>Sintomas comuns</h3>
+                <ul>
+                    <li>Febre.</li>
+                    <li>Dor de cabeça.</li>
+                    <li>Dores no corpo e nas articulações.</li>
+                    <li>Dor atrás dos olhos.</li>
+                    <li>Náuseas e manchas na pele.</li>
+                </ul>
+
+                <h3>Sinais de alarme</h3>
+                <ul>
+                    <li>Dor abdominal intensa.</li>
+                    <li>Vômitos persistentes.</li>
+                    <li>Sangramento.</li>
+                    <li>Tontura ou desmaio.</li>
+                    <li>Sonolência ou irritabilidade.</li>
+                </ul>
+
+                <div class="important">
+                    A presença de sinais de alarme exige avaliação
+                    imediata em serviço de saúde.
+                </div>
+
+                A prevenção inclui eliminar recipientes que
+                acumulam água e manter reservatórios protegidos.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>17. Hipertensão arterial</summary>
+            <div class="lesson-content">
+                É uma condição caracterizada pela elevação persistente
+                da pressão arterial.
+
+                <h3>Fatores de risco</h3>
+                <ul>
+                    <li>Consumo excessivo de sal.</li>
+                    <li>Sedentarismo.</li>
+                    <li>Obesidade.</li>
+                    <li>Tabagismo.</li>
+                    <li>Consumo excessivo de álcool.</li>
+                    <li>Histórico familiar.</li>
+                </ul>
+
+                <h3>Prevenção e acompanhamento</h3>
+                Alimentação equilibrada, atividade física,
+                acompanhamento regular e uso correto dos
+                medicamentos prescritos.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>18. Diabetes mellitus</summary>
+            <div class="lesson-content">
+                É uma doença caracterizada pela elevação da glicose
+                no sangue devido a problemas na produção ou ação
+                da insulina.
+
+                <h3>Possíveis sintomas</h3>
+                <ul>
+                    <li>Sede excessiva.</li>
+                    <li>Aumento da frequência urinária.</li>
+                    <li>Fome excessiva.</li>
+                    <li>Perda de peso inexplicada.</li>
+                    <li>Cansaço.</li>
+                </ul>
+
+                <h3>Cuidados</h3>
+                <ul>
+                    <li>Alimentação equilibrada.</li>
+                    <li>Atividade física.</li>
+                    <li>Acompanhamento da glicemia.</li>
+                    <li>Uso correto dos medicamentos prescritos.</li>
+                    <li>Acompanhamento na unidade de saúde.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>19. Diarreia e desidratação</summary>
+            <div class="lesson-content">
+                Diarreia é caracterizada pelo aumento da frequência
+                de evacuações com fezes líquidas ou amolecidas.
+
+                A desidratação ocorre quando o organismo perde
+                mais líquidos do que recebe.
+
+                <h3>Sinais de desidratação</h3>
+                <ul>
+                    <li>Boca seca.</li>
+                    <li>Sede intensa.</li>
+                    <li>Olhos fundos.</li>
+                    <li>Redução da urina.</li>
+                    <li>Fraqueza e sonolência.</li>
+                </ul>
+
+                A solução de sais de reidratação oral deve ser
+                preparada e administrada conforme as orientações
+                oficiais e a indicação dos profissionais de saúde.
+
+                <div class="important">
+                    Crianças pequenas, idosos e pessoas com sinais
+                    de desidratação precisam de atenção especial.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>20. Vacinas e calendário de vacinação</summary>
+            <div class="lesson-content">
+                As vacinas estimulam o sistema imunológico a
+                desenvolver proteção contra determinadas doenças.
+
+                <h3>Objetivos</h3>
+                <ul>
+                    <li>Prevenir doenças infecciosas.</li>
+                    <li>Reduzir complicações.</li>
+                    <li>Diminuir internações e mortes.</li>
+                    <li>Proteger a coletividade.</li>
+                </ul>
+
+                O Programa Nacional de Imunizações (PNI) organiza
+                as estratégias de vacinação no Brasil.
+
+                O calendário contempla diferentes grupos:
+                crianças, adolescentes, adultos, gestantes e idosos.
+
+                <div class="important">
+                    O calendário pode sofrer atualizações.
+                    Para estudar as idades, doses, intervalos e
+                    indicações vigentes, consulte o calendário oficial
+                    do Ministério da Saúde.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>21. Aparelho reprodutor masculino e feminino</summary>
+            <div class="lesson-content">
+                <h3>Sistema reprodutor masculino</h3>
+                Principais estruturas:
+                <ul>
+                    <li>Testículos.</li>
+                    <li>Epidídimos.</li>
+                    <li>Canais deferentes.</li>
+                    <li>Próstata.</li>
+                    <li>Vesículas seminais.</li>
+                    <li>Pênis.</li>
+                </ul>
+
+                <h3>Sistema reprodutor feminino</h3>
+                Principais estruturas:
+                <ul>
+                    <li>Ovários.</li>
+                    <li>Tubas uterinas.</li>
+                    <li>Útero.</li>
+                    <li>Vagina.</li>
+                    <li>Vulva.</li>
+                </ul>
+
+                Esses sistemas estão relacionados à reprodução
+                humana e à saúde sexual e reprodutiva.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>22. Gravidez e planejamento familiar</summary>
+            <div class="lesson-content">
+                O planejamento familiar permite que pessoas e
+                famílias decidam livremente sobre ter filhos,
+                quando tê-los e quantos filhos desejam ter.
+
+                <h3>Temas importantes</h3>
+                <ul>
+                    <li>Métodos contraceptivos.</li>
+                    <li>Pré-natal.</li>
+                    <li>Cuidados durante a gestação.</li>
+                    <li>Parto e puerpério.</li>
+                    <li>Amamentação.</li>
+                    <li>Direitos reprodutivos.</li>
+                </ul>
+
+                O pré-natal deve começar preferencialmente
+                assim que a gravidez for identificada.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>23. Sistemas de informação em saúde</summary>
+            <div class="lesson-content">
+                Os sistemas de informação permitem registrar,
+                organizar e analisar dados sobre a saúde da população.
+
+                <ul>
+                    <li><strong>SIM:</strong> Sistema de Informações
+                    sobre Mortalidade.</li>
+                    <li><strong>SINAN:</strong> Sistema de Informação
+                    de Agravos de Notificação.</li>
+                    <li><strong>SIAB:</strong> Sistema de Informação
+                    da Atenção Básica, historicamente utilizado
+                    e sucedido por novas ferramentas de informação.</li>
+                    <li><strong>SINASC:</strong> Sistema de Informações
+                    sobre Nascidos Vivos.</li>
+                    <li><strong>SIA/SUS:</strong> Sistema de Informações
+                    Ambulatoriais do SUS.</li>
+                    <li><strong>SIH/SUS:</strong> Sistema de Informações
+                    Hospitalares do SUS.</li>
+                </ul>
+
+                <div class="important">
+                    Memorize a finalidade de cada sistema.
+                    O edital cobra especialmente suas siglas e aplicações.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>24. Condições de risco social</summary>
+            <div class="lesson-content">
+                São situações que podem comprometer a saúde,
+                a segurança e a qualidade de vida das famílias.
+
+                <ul>
+                    <li>Violência.</li>
+                    <li>Desemprego.</li>
+                    <li>Infância desprotegida.</li>
+                    <li>Migração e deslocamentos populacionais.</li>
+                    <li>Analfabetismo.</li>
+                    <li>Moradia inadequada.</li>
+                    <li>Ausência de saneamento básico.</li>
+                    <li>Insuficiência de infraestrutura.</li>
+                </ul>
+
+                O ACS deve identificar vulnerabilidades,
+                orientar e articular o acompanhamento com a equipe
+                e a rede de proteção social.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>25. Promoção da saúde</summary>
+            <div class="lesson-content">
+                Promoção da saúde consiste em ações que buscam
+                melhorar a qualidade de vida e ampliar a capacidade
+                das pessoas e comunidades de cuidar da própria saúde.
+
+                <h3>Estratégias</h3>
+                <ul>
+                    <li>Educação em saúde.</li>
+                    <li>Alimentação saudável.</li>
+                    <li>Atividade física.</li>
+                    <li>Prevenção do tabagismo.</li>
+                    <li>Vacinação.</li>
+                    <li>Participação comunitária.</li>
+                    <li>Melhoria das condições ambientais.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>26. Pessoas com deficiência e inclusão social</summary>
+            <div class="lesson-content">
+                A pessoa com deficiência tem direito à igualdade,
+                à dignidade, à acessibilidade e à participação social.
+
+                <h3>Medidas de inclusão</h3>
+                <ul>
+                    <li>Eliminar barreiras físicas.</li>
+                    <li>Promover comunicação acessível.</li>
+                    <li>Garantir atendimento sem discriminação.</li>
+                    <li>Respeitar autonomia e decisões.</li>
+                    <li>Facilitar acesso aos serviços de saúde.</li>
+                </ul>
+
+                A Lei Brasileira de Inclusão é a Lei nº 13.146/2015.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>27. Programas e políticas nacionais de saúde</summary>
+            <div class="lesson-content">
+                As políticas de saúde buscam atender às necessidades
+                de diferentes grupos populacionais.
+
+                <h3>Principais áreas previstas no edital</h3>
+                <ul>
+                    <li>Saúde Mental.</li>
+                    <li>Assistência Farmacêutica.</li>
+                    <li>Saúde da Criança.</li>
+                    <li>Saúde da Mulher.</li>
+                    <li>Saúde do Idoso.</li>
+                    <li>Saúde da Pessoa com Deficiência.</li>
+                    <li>Saúde Ambiental.</li>
+                    <li>Saúde da População Negra.</li>
+                    <li>Saúde do Homem.</li>
+                </ul>
+
+                <h3>Objetivos gerais</h3>
+                <ul>
+                    <li>Promover saúde.</li>
+                    <li>Prevenir doenças.</li>
+                    <li>Ampliar o acesso.</li>
+                    <li>Reduzir desigualdades.</li>
+                    <li>Garantir atenção integral.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>28. Estatuto da Criança e do Adolescente – ECA</summary>
+            <div class="lesson-content">
+                O ECA é a Lei nº 8.069/1990.
+
+                Considera:
+                <ul>
+                    <li>Criança: pessoa com até 12 anos incompletos.</li>
+                    <li>Adolescente: pessoa entre 12 e 18 anos.</li>
+                </ul>
+
+                <h3>Direitos fundamentais</h3>
+                <ul>
+                    <li>Vida e saúde.</li>
+                    <li>Educação.</li>
+                    <li>Alimentação.</li>
+                    <li>Convivência familiar e comunitária.</li>
+                    <li>Respeito e dignidade.</li>
+                    <li>Proteção contra violência e negligência.</li>
+                </ul>
+
+                O ECA estabelece a proteção integral e a prioridade
+                dos direitos da criança e do adolescente.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>29. Estatuto da Pessoa Idosa</summary>
+            <div class="lesson-content">
+                O Estatuto da Pessoa Idosa é a Lei nº 10.741/2003,
+                com alterações posteriores.
+
+                Considera pessoa idosa aquela com idade igual
+                ou superior a 60 anos.
+
+                <h3>Direitos garantidos</h3>
+                <ul>
+                    <li>Saúde.</li>
+                    <li>Alimentação.</li>
+                    <li>Transporte.</li>
+                    <li>Educação e cultura.</li>
+                    <li>Respeito e dignidade.</li>
+                    <li>Convivência familiar e comunitária.</li>
+                    <li>Proteção contra negligência e violência.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>30. Ética e cidadania</summary>
+            <div class="lesson-content">
+                Ética envolve princípios e valores que orientam
+                o comportamento das pessoas.
+
+                <h3>Princípios importantes para o ACS</h3>
+                <ul>
+                    <li>Respeito.</li>
+                    <li>Responsabilidade.</li>
+                    <li>Honestidade.</li>
+                    <li>Sigilo profissional.</li>
+                    <li>Imparcialidade.</li>
+                    <li>Compromisso com a comunidade.</li>
+                    <li>Não discriminação.</li>
+                </ul>
+
+                Cidadania envolve o exercício de direitos e deveres
+                na sociedade.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>31. Política Nacional de Humanização do SUS</summary>
+            <div class="lesson-content">
+                A Política Nacional de Humanização busca melhorar
+                a qualidade das relações entre usuários,
+                trabalhadores e gestores do SUS.
+
+                <h3>Princípios importantes</h3>
+                <ul>
+                    <li>Transversalidade.</li>
+                    <li>Indissociabilidade entre atenção e gestão.</li>
+                    <li>Protagonismo, corresponsabilidade e autonomia.</li>
+                </ul>
+
+                <h3>Diretrizes e práticas</h3>
+                <ul>
+                    <li>Acolhimento.</li>
+                    <li>Gestão participativa.</li>
+                    <li>Clínica ampliada.</li>
+                    <li>Valorização do trabalhador.</li>
+                    <li>Defesa dos direitos dos usuários.</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>32. Atenção Primária à Saúde e Estratégia Saúde da Família</summary>
+            <div class="lesson-content">
+                A Atenção Primária à Saúde é a principal porta
+                de entrada preferencial do SUS e coordenadora
+                do cuidado na rede.
+
+                <h3>Características</h3>
+                <ul>
+                    <li>Acompanhamento contínuo.</li>
+                    <li>Promoção da saúde.</li>
+                    <li>Prevenção de doenças.</li>
+                    <li>Diagnóstico e tratamento de problemas comuns.</li>
+                    <li>Coordenação do cuidado.</li>
+                    <li>Atuação no território.</li>
+                </ul>
+
+                A Estratégia Saúde da Família organiza equipes
+                multiprofissionais para acompanhar a população
+                em territórios definidos.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>33. Programa de Agentes Comunitários de Saúde – PACS</summary>
+            <div class="lesson-content">
+                O PACS foi uma estratégia importante para ampliar
+                as ações de atenção básica e aproximar os serviços
+                de saúde das comunidades.
+
+                O trabalho dos agentes envolve:
+                <ul>
+                    <li>Conhecer o território.</li>
+                    <li>Acompanhar famílias.</li>
+                    <li>Realizar visitas domiciliares.</li>
+                    <li>Orientar sobre prevenção.</li>
+                    <li>Identificar situações de risco.</li>
+                    <li>Integrar comunidade e equipe de saúde.</li>
+                </ul>
+
+                O trabalho dos ACS também está relacionado
+                à Estratégia Saúde da Família.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>34. NASF e equipes multiprofissionais</summary>
+            <div class="lesson-content">
+                O Núcleo de Apoio à Saúde da Família (NASF) foi
+                criado para ampliar a capacidade de atuação
+                das equipes de Atenção Básica.
+
+                Sua proposta envolvia apoio matricial,
+                compartilhamento de conhecimentos e atuação
+                interdisciplinar.
+
+                A organização atual da Atenção Primária inclui
+                as equipes Multiprofissionais (eMulti),
+                regulamentadas em substituição ao modelo anterior.
+
+                <div class="important">
+                    Para a prova, saiba reconhecer a sigla NASF
+                    e sua finalidade histórica, sem confundi-la
+                    com a organização atual das eMulti.
+                </div>
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>35. Serviço de Atenção Domiciliar – SAD</summary>
+            <div class="lesson-content">
+                O Serviço de Atenção Domiciliar oferece cuidados
+                de saúde no domicílio para pessoas que necessitam
+                de acompanhamento específico.
+
+                O programa Melhor em Casa está relacionado
+                à organização dessa atenção.
+
+                <h3>Objetivos</h3>
+                <ul>
+                    <li>Ampliar o atendimento domiciliar.</li>
+                    <li>Garantir continuidade do cuidado.</li>
+                    <li>Evitar internações desnecessárias.</li>
+                    <li>Favorecer recuperação e reabilitação.</li>
+                </ul>
+
+                O SAD trabalha articulado com os demais serviços
+                da rede de atenção à saúde.
+            </div>
+        </details>
+
+        <details class="topic">
+            <summary>36. Atribuições do Agente Comunitário de Saúde</summary>
+            <div class="lesson-content">
+                O ACS atua como elo entre a comunidade e a equipe
+                de saúde, contribuindo para a promoção da saúde
+                e prevenção de doenças.
+
+                <h3>Principais atividades</h3>
+                <ul>
+                    <li>Realizar visitas domiciliares.</li>
+                    <li>Identificar situações de risco.</li>
+                    <li>Orientar famílias.</li>
+                    <li>Desenvolver ações de educação em saúde.</li>
+                    <li>Realizar e manter atualizado o cadastramento
+                    da população, conforme suas atribuições.</li>
+                    <li>Estimular a participação comunitária.</li>
+                    <li>Informar à equipe sobre necessidades
+                    identificadas no território.</li>
+                </ul>
+
+                <div class="important">
+                    O ACS não substitui o médico, o enfermeiro
+                    ou outros profissionais. Deve atuar dentro
+                    de suas competências legais e profissionais.
+                </div>
+            </div>
+        </details>
+
+        <div class="lesson-footer">
+            <strong>Base de estudo:</strong> Edital do Concurso
+            Público Municipal nº 001/2026, Prefeitura de
+            Canto do Buriti – PI. Para legislação, calendário
+            vacinal e protocolos clínicos, consulte também
+            as versões oficiais atualizadas.
+        </div>
+
+    </section>
+
+    <footer style="text-align:center;padding:25px;color:#64748b;font-size:13px;">
+        Preparatório ACS • Canto do Buriti<br>
+        Materiais de estudo para o Concurso Público 001/2026
+    </footer>
+
+</main>
+
+<script src="users.js"></script>
+<script>
+function filtrarAulas() {
+    const termo = document.getElementById("searchMaterial")
+        .value.toLowerCase().trim();
+
+    const materias = document.querySelectorAll(".searchable");
+    let encontrou = false;
+
+    materias.forEach(materia => {
+        const aulas = materia.querySelectorAll(".topic");
+        let encontrouMateria = false;
+
+        aulas.forEach(aula => {
+            const corresponde = aula.textContent
+                .toLowerCase()
+                .includes(termo);
+
+            aula.style.display = corresponde ? "" : "none";
+
+            if (corresponde) {
+                encontrouMateria = true;
+                encontrou = true;
+
+                if (termo) aula.open = true;
+            }
+        });
+
+        materia.style.display = encontrouMateria ? "" : "none";
+    });
+
+    document.getElementById("noResults").style.display =
+        encontrou ? "none" : "block";
+
+    if (!termo) {
+        materias.forEach(materia => {
+            materia.querySelectorAll(".topic").forEach(aula => {
+                aula.style.display = "";
+                aula.open = false;
+            });
+        });
+    }
+}
+
+const videoaulas = [
+    {
+        assunto: "Leitura e interpretação de texto",
+        link: "https://www.youtube.com/watch?v=rWUbTSRHY1Q",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Ortografia",
+        link: "https://www.youtube.com/watch?v=VNieX2QuWlY",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Acentuação gráfica",
+        link: "https://www.youtube.com/watch?v=GpjdwrssvuE",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Encontros vocálicos",
+        link: "https://www.youtube.com/watch?v=0933HA-ZqdA",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Encontros consonantais",
+        link: "https://www.youtube.com/watch?v=NIe8rsNExp0",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Dígrafos",
+        link: "https://www.youtube.com/watch?v=Dbm2ceeey6g",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Divisão silábica",
+        link: "https://www.youtube.com/watch?v=Nv9CmEdYLTI",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Adjetivos",
+        link: "https://www.youtube.com/watch?v=tgoAZdK4Lro",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Artigos",
+        link: "https://www.youtube.com/watch?v=7zA6LKkx25g",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Verbos: tempo, número, pessoa e conjugação",
+        link: "https://www.youtube.com/watch?v=OgZFm6udINE",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Sinônimos e antônimos",
+        link: "https://www.youtube.com/watch?v=0h9QWu12k2k",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Pontuação",
+        link: "https://www.youtube.com/watch?v=KD2TAJyZECc",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Substantivos: classificação e flexão",
+        link: "https://www.youtube.com/watch?v=v1Pa8_9i15I",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Regras gramaticais",
+        link: "https://www.youtube.com/watch?v=UQn3lWudBdM",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Quantidade e comparação",
+        link: "https://www.youtube.com/watch?v=MtbASK4OHC8",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Adição",
+        link: "https://www.youtube.com/watch?v=az6OYFS7AUA",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Subtração",
+        link: "https://www.youtube.com/watch?v=fy3CBP0lu8M",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Multiplicação",
+        link: "https://www.youtube.com/watch?v=BetgRvNQEC0",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Divisão",
+        link: "https://www.youtube.com/watch?v=GpnfZHB3Rpw",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Números pares e ímpares",
+        link: "https://www.youtube.com/watch?v=G8nsIlWhmMk",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Sequência numérica",
+        link: "https://www.youtube.com/watch?v=L5tpm8CQwn8",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Algarismos romanos",
+        link: "https://www.youtube.com/watch?v=opVjVyl_vO4",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Sistema monetário e problemas com dinheiro",
+        link: "https://www.youtube.com/watch?v=d6CNWVFOYIs",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Comprimento",
+        link: "https://www.youtube.com/watch?v=AEq9ykJkR2U",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Massa",
+        link: "https://www.youtube.com/watch?v=WFGQelMfd5U",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Volume e capacidade",
+        link: "https://www.youtube.com/watch?v=nDD9DVEzkZM",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Altura",
+        link: "https://www.youtube.com/watch?v=dVe85RWViGo",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Abreviaturas do sistema de medidas",
+        link: "https://www.youtube.com/watch?v=752KWWVH_VU",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Formas geométricas",
+        link: "https://www.youtube.com/watch?v=LCoQ0fxipHI",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Relógio e medidas de tempo",
+        link: "https://www.youtube.com/watch?v=194JAfgVmy0",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Frações e partes de desenhos",
+        link: "https://www.youtube.com/watch?v=vF0Q0ZAH9Uc",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Sistema Único de Saúde – SUS",
+        link: "https://www.youtube.com/watch?v=YJaEz2qBveY",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Processo saúde-doença e seus determinantes",
+        link: "https://www.youtube.com/watch?v=bVmc-gngyVI",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Visita domiciliar",
+        link: "https://www.youtube.com/watch?v=xNyjPYGgnzA",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Cadastramento familiar e territorial",
+        link: "https://www.youtube.com/watch?v=gO9B7qvdnKI",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Territorialização, microárea e área de abrangência",
+        link: "https://www.youtube.com/watch?v=6dyKDESFP6o",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Interpretação demográfica",
+        link: "https://www.youtube.com/watch?v=jvAZYQdLKkw",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Indicadores epidemiológicos",
+        link: "https://www.youtube.com/watch?v=DUCEdVFccjk",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Levantamento das condições de vida e saúde",
+        link: "https://www.youtube.com/watch?v=r7ZG3fQ27Yo",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Priorização das ações de saúde",
+        link: "https://www.youtube.com/watch?v=1i1yH6DdPA4",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Eficácia, eficiência e efetividade",
+        link: "https://www.youtube.com/watch?v=yr_TY5Nf6jE",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Qualidade da atenção à saúde",
+        link: "https://www.youtube.com/watch?v=4VIvXpm4swU",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Meio ambiente e saneamento básico",
+        link: "https://www.youtube.com/watch?v=rGQCNmFLFTc",
+        tipo: "youtube"
+    },
+    {
+        assunto: "IST e infecção pelo HIV",
+        link: "https://www.youtube.com/watch?v=gxr9cXUi7jc",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Tuberculose",
+        link: "https://www.youtube.com/watch?v=GvtmylYHjVU",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Hanseníase",
+        link: "https://www.youtube.com/watch?v=7S7JBggtj-M",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Dengue",
+        link: "https://www.youtube.com/watch?v=Zkl3TohLQG8",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Hipertensão arterial",
+        link: "https://www.youtube.com/watch?v=mYkXem2zUcs",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Diabetes mellitus",
+        link: "https://www.youtube.com/watch?v=iWGBUY52g-g",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Diarreia e desidratação",
+        link: "https://www.youtube.com/watch?v=zBtNSHSaavE",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Vacinas e calendário de vacinação",
+        link: "https://www.youtube.com/watch?v=F_gRLBQQaZo",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Aparelho reprodutor masculino e feminino",
+        link: "https://www.youtube.com/watch?v=widhcGlrte0",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Gravidez e planejamento familiar",
+        link: "https://www.youtube.com/watch?v=iBNa69H26-I",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Sistemas de informação em saúde",
+        link: "https://www.youtube.com/watch?v=o9c9o3NLtNI",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Condições de risco social",
+        link: "https://www.youtube.com/watch?v=ywhdtX-YFCw",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Promoção da saúde",
+        link: "https://www.youtube.com/watch?v=8TmjDEc7ncI",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Pessoas com deficiência e inclusão social",
+        link: "https://www.youtube.com/watch?v=62MwiyNI1V4",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Programas e políticas nacionais de saúde",
+        link: "https://www.youtube.com/watch?v=TDvRSqxkxVI",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Estatuto da Criança e do Adolescente – ECA",
+        link: "https://www.youtube.com/watch?v=OYYk-DhaoD0",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Estatuto da Pessoa Idosa",
+        link: "https://www.youtube.com/watch?v=uRQlEMuMipg",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Ética e cidadania",
+        link: "https://www.youtube.com/watch?v=Hfpll_MJtM4",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Política Nacional de Humanização do SUS",
+        link: "https://www.youtube.com/watch?v=huhL2nW31bo",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Atenção Primária à Saúde e Estratégia Saúde da Família",
+        link: "https://www.youtube.com/watch?v=fCjXRi2Tp3A",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Programa de Agentes Comunitários de Saúde – PACS",
+        link: "https://www.youtube.com/watch?v=aAh0h5mz5rA",
+        tipo: "youtube"
+    },
+    {
+        assunto: "NASF e equipes multiprofissionais",
+        link: "https://www.youtube.com/watch?v=RlyBdKi7TRQ",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Serviço de Atenção Domiciliar – SAD",
+        link: "https://www.youtube.com/watch?v=_CUvwHODuo8",
+        tipo: "youtube"
+    },
+    {
+        assunto: "Atribuições do Agente Comunitário de Saúde",
+        link: "https://www.youtube.com/watch?v=RW0BsUISsBY",
+        tipo: "youtube"
+    }
+];
+
+function obterIdVideoYouTube(link) {
+    const url = new URL(link);
+
+    if (url.hostname === "youtu.be") {
+        return url.pathname.slice(1);
+    }
+
+    if (url.hostname === "youtube.com" || url.hostname === "www.youtube.com") {
+        if (url.pathname === "/watch") {
+            return url.searchParams.get("v");
+        }
+
+        const embedMatch = url.pathname.match(/^\/embed\/([^/]+)/);
+        return embedMatch ? embedMatch[1] : null;
+    }
+
+    return null;
+}
+
+function fecharVideoaula(player) {
+    player.replaceChildren();
+    player.hidden = true;
+
+    const botao = player.parentElement.querySelector(".video-lesson-action");
+    botao.setAttribute("aria-expanded", "false");
+}
+
+function adicionarAcoesVideoaula() {
+    document.querySelectorAll(".subject-card.searchable .topic")
+        .forEach(topico => {
+        const assunto = topico.querySelector("summary").textContent
+            .replace(/^\d+\.\s*/, "")
+            .trim();
+        const videoaula = videoaulas.find(
+            item => item.assunto === assunto
+        );
+
+        if (!videoaula) {
+            console.warn(`Nenhuma videoaula associada a "${assunto}".`);
+            return;
+        }
+
+        const conteudo = topico.querySelector(".lesson-content");
+        const acao = document.createElement(
+            videoaula.tipo === "pesquisa" ? "a" : "button"
+        );
+        acao.className = "video-lesson-action";
+        acao.textContent = "▶ Assistir à videoaula";
+
+        if (videoaula.tipo === "pesquisa") {
+            acao.href = videoaula.link;
+            acao.target = "_blank";
+            acao.rel = "noopener noreferrer";
+        } else {
+            acao.type = "button";
+            acao.setAttribute("aria-expanded", "false");
+
+            const player = document.createElement("div");
+            player.className = "video-player";
+            player.hidden = true;
+
+            acao.addEventListener("click", () => {
+                document.querySelectorAll(".video-player:not([hidden])")
+                    .forEach(fecharVideoaula);
+
+                const videoId = obterIdVideoYouTube(videoaula.link);
+                if (!videoId) {
+                    console.error(
+                        `Não foi possível identificar o vídeo de "${videoaula.assunto}".`
+                    );
+                    return;
+                }
+
+                const fechar = document.createElement("button");
+                fechar.type = "button";
+                fechar.className = "video-player-close";
+                fechar.textContent = "Fechar videoaula";
+                fechar.addEventListener("click", () => fecharVideoaula(player));
+
+                const iframe = document.createElement("iframe");
+                iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}`;
+                iframe.title = `${videoaula.assunto} - videoaula`;
+                iframe.allow =
+                    "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                iframe.allowFullscreen = true;
+                iframe.loading = "lazy";
+
+                player.append(fechar, iframe);
+                player.hidden = false;
+                acao.setAttribute("aria-expanded", "true");
+            });
+
+            conteudo.prepend(player);
+        }
+
+        conteudo.prepend(acao);
+        });
+}
+
+adicionarAcoesVideoaula();
+</script>
+
+</body>
+</html>

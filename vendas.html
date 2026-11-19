@@ -1,0 +1,1580 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="Prepare-se para o concurso de Agente Comunitário de Saúde com materiais organizados, questões, simulados e acompanhamento de desempenho.">
+
+<meta name="theme-color" content="#071b35">
+
+<title>Preparatório ACS | Prepare-se para sua aprovação</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --navy: #071b35;
+    --navy-light: #102d50;
+    --blue: #176bba;
+    --blue-light: #eaf3ff;
+    --green: #0c9b77;
+    --gold: #ffbd59;
+    --text: #172b45;
+    --muted: #687b91;
+    --white: #ffffff;
+    --background: #f5f8fc;
+    --border: #e6edf5;
+    --shadow: 0 15px 45px rgba(7,27,53,.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--background);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
+button, a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.container {
+    width: min(1160px, 91%);
+    margin: auto;
+}
+
+/* NAVEGAÇÃO */
+
+.navbar {
+    background: rgba(255,255,255,.96);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(15px);
+}
+
+.nav-content {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    color: var(--navy);
+    font-family: 'Manrope', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.logo-icon {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    background: var(--navy);
+    color: var(--gold);
+    border-radius: 13px;
+    font-size: 21px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-links a {
+    color: #52657c;
+    font-size: 13px;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.nav-links a:hover {
+    color: var(--blue);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.login-link {
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.nav-button {
+    padding: 12px 19px;
+    background: var(--navy);
+    color: white;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 800;
+    transition: .2s;
+}
+
+.nav-button:hover {
+    background: var(--blue);
+    transform: translateY(-2px);
+}
+
+/* BOTÕES */
+
+.btn {
+    min-height: 54px;
+    padding: 0 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 800;
+    transition: .25s;
+    cursor: pointer;
+}
+
+.btn-primary {
+    color: var(--navy);
+    background: var(--gold);
+    box-shadow: 0 8px 22px rgba(255,189,89,.22);
+}
+
+.btn-primary:hover {
+    background: #ffd18a;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(255,189,89,.3);
+}
+
+.btn-outline {
+    color: white;
+    border: 1px solid rgba(255,255,255,.3);
+    background: rgba(255,255,255,.07);
+}
+
+.btn-outline:hover {
+    background: rgba(255,255,255,.15);
+}
+
+/* HERO */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 85% 20%, rgba(31,117,188,.35), transparent 35%),
+        linear-gradient(120deg, #071b35 0%, #102e52 65%, #124b68 100%);
+    color: white;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 50%;
+    right: -150px;
+    top: -150px;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 50%;
+    right: -80px;
+    top: -75px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 105px 0 100px;
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    align-items: center;
+    gap: 55px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 13px;
+    border: 1px solid rgba(255,189,89,.3);
+    border-radius: 30px;
+    color: var(--gold);
+    background: rgba(255,189,89,.08);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    max-width: 720px;
+    margin: 24px 0 20px;
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(36px,5.2vw,59px);
+    font-weight: 800;
+    line-height: 1.13;
+    letter-spacing: -2px;
+}
+
+.hero h1 span {
+    color: var(--gold);
+}
+
+.hero-description {
+    max-width: 580px;
+    color: #c6d5e6;
+    font-size: 16px;
+    line-height: 1.85;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+    margin-top: 32px;
+}
+
+.hero-note {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 23px;
+    color: #c3d3e4;
+    font-size: 12px;
+}
+
+.hero-note strong {
+    color: white;
+}
+
+.hero-panel {
+    position: relative;
+    padding: 30px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 22px;
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 25px 70px rgba(0,0,0,.18);
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,.13);
+}
+
+.panel-header strong {
+    font-size: 15px;
+}
+
+.panel-label {
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: #6ee7bb;
+    background: rgba(16,185,129,.12);
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.panel-items {
+    display: grid;
+    gap: 13px;
+    margin-top: 22px;
+}
+
+.panel-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 14px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.08);
+}
+
+.panel-icon {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 11px;
+    background: rgba(255,255,255,.13);
+    font-size: 20px;
+}
+
+.panel-item strong {
+    display: block;
+    font-size: 13px;
+}
+
+.panel-item small {
+    color: #b6c9dd;
+    font-size: 11px;
+}
+
+.panel-bottom {
+    margin-top: 20px;
+    padding: 14px;
+    border-radius: 10px;
+    color: #ffdc9b;
+    background: rgba(255,189,89,.12);
+    font-size: 12px;
+    text-align: center;
+    font-weight: 700;
+}
+
+/* INDICADORES */
+
+.trust-strip {
+    position: relative;
+    z-index: 3;
+    margin-top: -1px;
+    background: white;
+    border-bottom: 1px solid var(--border);
+}
+
+.trust-content {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    padding: 25px 0;
+}
+
+.trust-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-right: 1px solid var(--border);
+}
+
+.trust-item:last-child {
+    border: none;
+}
+
+.trust-icon {
+    font-size: 24px;
+}
+
+.trust-item strong {
+    display: block;
+    color: var(--navy);
+    font-size: 13px;
+}
+
+.trust-item small {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* SEÇÕES */
+
+.section {
+    padding: 85px 0;
+}
+
+.section-heading {
+    max-width: 680px;
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+.section-tag {
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+}
+
+.section-heading h2 {
+    margin: 13px 0;
+    color: var(--navy);
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(27px,4vw,39px);
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* BENEFÍCIOS */
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 17px;
+}
+
+.feature-card {
+    padding: 26px 22px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: white;
+    transition: .25s;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    border-color: #bdd8f5;
+    box-shadow: var(--shadow);
+}
+
+.feature-icon {
+    width: 53px;
+    height: 53px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 20px;
+    border-radius: 14px;
+    background: var(--blue-light);
+    font-size: 25px;
+}
+
+.feature-card h3 {
+    margin-bottom: 10px;
+    color: var(--navy);
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.feature-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* DIFERENCIAL */
+
+.difference {
+    background: white;
+}
+
+.difference-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 70px;
+}
+
+.difference-visual {
+    padding: 32px;
+    border-radius: 23px;
+    background: linear-gradient(145deg,#e9f2ff,#f5f9ff);
+}
+
+.visual-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.visual-top strong {
+    color: var(--navy);
+    font-size: 16px;
+}
+
+.visual-badge {
+    color: var(--green);
+    background: white;
+    border-radius: 20px;
+    padding: 6px 11px;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.visual-card {
+    padding: 18px;
+    margin-bottom: 12px;
+    border: 1px solid #e4edf8;
+    border-radius: 13px;
+    background: white;
+}
+
+.visual-card:last-child {
+    margin-bottom: 0;
+}
+
+.visual-card strong {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--navy);
+    font-size: 13px;
+}
+
+.visual-card p {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.visual-progress {
+    height: 7px;
+    margin-top: 12px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #edf2f7;
+}
+
+.visual-progress span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--green);
+}
+
+.difference-text .section-tag {
+    display: block;
+}
+
+.difference-text h2 {
+    margin: 13px 0 17px;
+    color: var(--navy);
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(28px,4vw,38px);
+    line-height: 1.2;
+}
+
+.difference-text > p {
+    margin-bottom: 24px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.check-list {
+    display: grid;
+    gap: 17px;
+}
+
+.check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #42566e;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.check {
+    width: 23px;
+    height: 23px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--green);
+    background: #e7f8f1;
+    font-size: 12px;
+}
+
+/* COMO FUNCIONA */
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 16px;
+}
+
+.step-card {
+    position: relative;
+    padding: 26px 20px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: white;
+}
+
+.step-number {
+    width: 39px;
+    height: 39px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 18px;
+    border-radius: 11px;
+    color: white;
+    background: var(--navy);
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.step-card h3 {
+    margin-bottom: 9px;
+    color: var(--navy);
+    font-size: 15px;
+}
+
+.step-card p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* OFERTA */
+
+.offer-section {
+    padding: 85px 0;
+    background:
+        radial-gradient(circle at 10% 90%,rgba(23,107,186,.2),transparent 35%),
+        linear-gradient(120deg,#071b35,#102d50);
+    color: white;
+}
+
+.offer-grid {
+    display: grid;
+    grid-template-columns: 1fr .8fr;
+    align-items: center;
+    gap: 65px;
+}
+
+.offer-text .section-tag {
+    color: var(--gold);
+}
+
+.offer-text h2 {
+    margin: 16px 0;
+    font-family: 'Manrope',sans-serif;
+    font-size: clamp(30px,4vw,43px);
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.offer-text > p {
+    max-width: 530px;
+    color: #c5d4e5;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.offer-benefits {
+    display: grid;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.offer-benefits div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #e3edf7;
+    font-size: 13px;
+}
+
+.offer-benefits span {
+    color: #6ee7bb;
+    font-weight: 900;
+}
+
+.price-card {
+    padding: 35px;
+    border: 1px solid rgba(255,255,255,.17);
+    border-radius: 20px;
+    background: rgba(255,255,255,.08);
+    box-shadow: 0 20px 55px rgba(0,0,0,.15);
+    text-align: center;
+}
+
+.price-label {
+    color: #d2e0ed;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.price-value {
+    margin: 12px 0 5px;
+    color: var(--gold);
+    font-family: 'Manrope',sans-serif;
+    font-size: clamp(43px,6vw,58px);
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.price-description {
+    margin-bottom: 25px;
+    color: #c5d4e5;
+    font-size: 12px;
+}
+
+.price-card .btn {
+    width: 100%;
+}
+
+.price-security {
+    margin-top: 17px;
+    color: #c5d4e5;
+    font-size: 11px;
+}
+
+/* GARANTIA */
+
+.guarantee {
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 23px;
+    border: 1px solid #c8eee0;
+    border-radius: 17px;
+    background: #edfaf5;
+}
+
+.guarantee-icon {
+    width: 62px;
+    height: 62px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    background: white;
+    font-size: 30px;
+}
+
+.guarantee h3 {
+    margin-bottom: 5px;
+    color: #087c60;
+    font-size: 17px;
+}
+
+.guarantee p {
+    color: #527466;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* CTA FINAL */
+
+.final-cta {
+    padding: 75px 0;
+    text-align: center;
+}
+
+.final-cta h2 {
+    max-width: 650px;
+    margin: 0 auto 13px;
+    color: var(--navy);
+    font-family: 'Manrope',sans-serif;
+    font-size: clamp(27px,4vw,38px);
+    line-height: 1.2;
+}
+
+.final-cta p {
+    max-width: 540px;
+    margin: 0 auto 25px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* RODAPÉ */
+
+.footer {
+    padding: 32px 0;
+    color: #a9bdd1;
+    background: #06172d;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-brand {
+    color: white;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.footer p {
+    font-size: 11px;
+}
+
+/* BOTÃO WHATSAPP FIXO */
+
+.whatsapp-float {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 90;
+    width: 57px;
+    height: 57px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: white;
+    background: #20bf78;
+    box-shadow: 0 7px 25px rgba(0,0,0,.2);
+    font-size: 27px;
+    transition: .25s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.09);
+}
+
+/* ANIMAÇÕES */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content > * {
+    animation: fadeUp .7s ease both;
+}
+
+.hero-panel {
+    animation-delay: .15s;
+}
+
+/* RESPONSIVIDADE */
+
+@media(max-width:900px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 45px;
+        padding: 75px 0;
+    }
+
+    .hero-panel {
+        max-width: 550px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .difference-grid {
+        gap: 35px;
+    }
+
+    .steps-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .offer-grid {
+        gap: 35px;
+    }
+}
+
+@media(max-width:650px) {
+    .nav-content {
+        min-height: 68px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .logo {
+        font-size: 14px;
+    }
+
+    .logo-icon {
+        width: 37px;
+        height: 37px;
+    }
+
+    .nav-button {
+        padding: 10px 13px;
+        font-size: 11px;
+    }
+
+    .hero-content {
+        padding: 65px 0;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+        letter-spacing: -1.4px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .trust-content {
+        grid-template-columns: 1fr;
+        padding: 12px 0;
+    }
+
+    .trust-item {
+        justify-content: flex-start;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 13px 10px;
+    }
+
+    .trust-item:last-child {
+        border: none;
+    }
+
+    .section {
+        padding: 65px 0;
+    }
+
+    .features-grid {
+        gap: 12px;
+    }
+
+    .feature-card {
+        padding: 19px 15px;
+    }
+
+    .feature-card h3 {
+        font-size: 13px;
+    }
+
+    .feature-card p {
+        font-size: 12px;
+    }
+
+    .difference-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .difference-visual {
+        padding: 20px;
+    }
+
+    .steps-grid {
+        gap: 12px;
+    }
+
+    .step-card {
+        padding: 19px 15px;
+    }
+
+    .offer-section {
+        padding: 65px 0;
+    }
+
+    .offer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .price-card {
+        padding: 28px 22px;
+    }
+
+    .guarantee {
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .guarantee-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 23px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media(max-width:380px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 33px;
+    }
+
+    .nav-actions {
+        gap: 8px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVEGAÇÃO -->
+
+<nav class="navbar">
+    <div class="container nav-content">
+
+        <a href="index.html" class="logo">
+            <span class="logo-icon">🎓</span>
+            <span>Preparatório ACS</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#beneficios">Benefícios</a>
+            <a href="#plataforma">A plataforma</a>
+            <a href="#como-funciona">Como funciona</a>
+            <a href="#investimento">Investimento</a>
+        </div>
+
+        <div class="nav-actions">
+            <a href="login.html" class="login-link">Entrar</a>
+            <a href="#investimento" class="nav-button">Conhecer acesso →</a>
+        </div>
+
+    </div>
+</nav>
+
+<!-- HERO -->
+
+<header class="hero">
+
+    <div class="container hero-content">
+
+        <div>
+
+            <span class="eyebrow">
+                ✦ PREPARATÓRIO ACS • CANTO DO BURITI
+            </span>
+
+            <h1>
+                Sua preparação para o concurso começa com <span>um bom plano.</span>
+            </h1>
+
+            <p class="hero-description">
+                Pare de estudar sem direção. Tenha materiais organizados,
+                questões para praticar, simulados e acompanhamento do seu
+                desempenho em uma única plataforma.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="https://wa.me/5589981267779?text=Ol%C3%A1%2C%20quero%20conhecer%20o%20Preparat%C3%B3rio%20ACS."
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn btn-primary">
+                    Quero conhecer a plataforma →
+                </a>
+
+                <a href="#beneficios" class="btn btn-outline">
+                    Conhecer os recursos
+                </a>
+
+            </div>
+
+            <div class="hero-note">
+                <span>✓</span>
+                <span><strong>Preparação organizada</strong> para estudar no seu ritmo.</span>
+            </div>
+
+        </div>
+
+        <div class="hero-panel">
+
+            <div class="panel-header">
+                <strong>Seu ambiente de estudos</strong>
+                <span class="panel-label">ACS</span>
+            </div>
+
+            <div class="panel-items">
+
+                <div class="panel-item">
+                    <div class="panel-icon">📚</div>
+                    <div>
+                        <strong>Materiais de estudo</strong>
+                        <small>Conteúdos organizados por disciplina</small>
+                    </div>
+                </div>
+
+                <div class="panel-item">
+                    <div class="panel-icon">📝</div>
+                    <div>
+                        <strong>Banco de questões</strong>
+                        <small>Pratique e teste seus conhecimentos</small>
+                    </div>
+                </div>
+
+                <div class="panel-item">
+                    <div class="panel-icon">📊</div>
+                    <div>
+                        <strong>Simulados e desempenho</strong>
+                        <small>Acompanhe seus resultados</small>
+                    </div>
+                </div>
+
+                <div class="panel-item">
+                    <div class="panel-icon">🎯</div>
+                    <div>
+                        <strong>Organização dos estudos</strong>
+                        <small>Controle seus assuntos estudados</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="panel-bottom">
+                Seu próximo passo começa com organização.
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- INDICADORES -->
+
+<section class="trust-strip">
+    <div class="container trust-content">
+
+        <div class="trust-item">
+            <span class="trust-icon">📖</span>
+            <div>
+                <strong>Estude por disciplina</strong>
+                <small>Conteúdo organizado</small>
+            </div>
+        </div>
+
+        <div class="trust-item">
+            <span class="trust-icon">✍️</span>
+            <div>
+                <strong>Pratique questões</strong>
+                <small>Teste o que aprendeu</small>
+            </div>
+        </div>
+
+        <div class="trust-item">
+            <span class="trust-icon">📈</span>
+            <div>
+                <strong>Acompanhe resultados</strong>
+                <small>Identifique pontos de melhoria</small>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+
+<section class="section" id="beneficios">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-tag">Tudo em um só lugar</span>
+
+            <h2>Uma plataforma para organizar sua preparação</h2>
+
+            <p>
+                Tenha à disposição ferramentas que ajudam a tornar
+                sua rotina de estudos mais organizada e produtiva.
+            </p>
+
+        </div>
+
+        <div class="features-grid">
+
+            <article class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>Materiais organizados</h3>
+                <p>
+                    Acesse páginas de estudo e conteúdos separados por
+                    disciplina, facilitando a localização dos assuntos.
+                </p>
+            </article>
+
+            <article class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h3>Questões e simulados</h3>
+                <p>
+                    Pratique por disciplina, responda questões e realize
+                    simulados para testar seus conhecimentos.
+                </p>
+            </article>
+
+            <article class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Desempenho detalhado</h3>
+                <p>
+                    Consulte seus acertos, percentuais e histórico
+                    para identificar os conteúdos que precisam de reforço.
+                </p>
+            </article>
+
+            <article class="feature-card">
+                <div class="feature-icon">✅</div>
+                <h3>Checklist de estudos</h3>
+                <p>
+                    Marque os assuntos já estudados e acompanhe
+                    sua evolução ao longo da preparação.
+                </p>
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- DIFERENCIAL -->
+
+<section class="section difference" id="plataforma">
+
+    <div class="container difference-grid">
+
+        <div class="difference-visual">
+
+            <div class="visual-top">
+                <strong>Organize sua preparação</strong>
+                <span class="visual-badge">Estude no seu ritmo</span>
+            </div>
+
+            <div class="visual-card">
+                <strong>📚 Materiais por disciplina</strong>
+                <p>Encontre os conteúdos que deseja estudar.</p>
+                <div class="visual-progress">
+                    <span style="width:85%"></span>
+                </div>
+            </div>
+
+            <div class="visual-card">
+                <strong>📝 Prática de questões</strong>
+                <p>Resolva exercícios e simulados.</p>
+                <div class="visual-progress">
+                    <span style="width:70%"></span>
+                </div>
+            </div>
+
+            <div class="visual-card">
+                <strong>📈 Acompanhamento</strong>
+                <p>Observe seus resultados e evolução.</p>
+                <div class="visual-progress">
+                    <span style="width:90%"></span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="difference-text">
+
+            <span class="section-tag">Mais organização, menos improviso</span>
+
+            <h2>Não basta estudar. É importante saber como está estudando.</h2>
+
+            <p>
+                Uma preparação eficiente exige constância, prática
+                e organização. Por isso, a plataforma reúne recursos
+                que ajudam você a administrar seus estudos em um só ambiente.
+            </p>
+
+            <div class="check-list">
+
+                <div class="check-item">
+                    <span class="check">✓</span>
+                    <span>Encontre os materiais de acordo com a disciplina.</span>
+                </div>
+
+                <div class="check-item">
+                    <span class="check">✓</span>
+                    <span>Pratique com questões e simulados.</span>
+                </div>
+
+                <div class="check-item">
+                    <span class="check">✓</span>
+                    <span>Identifique os assuntos que merecem mais atenção.</span>
+                </div>
+
+                <div class="check-item">
+                    <span class="check">✓</span>
+                    <span>Organize sua rotina com o checklist de estudos.</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- COMO FUNCIONA -->
+
+<section class="section" id="como-funciona">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-tag">Acesso simples e rápido</span>
+
+            <h2>Comece sua preparação em 4 passos</h2>
+
+            <p>
+                O processo de aquisição é simples.
+                Você recebe as orientações diretamente pelo WhatsApp.
+            </p>
+
+        </div>
+
+        <div class="steps-grid">
+
+            <article class="step-card">
+                <div class="step-number">01</div>
+                <h3>Entre em contato</h3>
+                <p>
+                    Envie uma mensagem pelo WhatsApp informando
+                    que deseja adquirir o acesso.
+                </p>
+            </article>
+
+            <article class="step-card">
+                <div class="step-number">02</div>
+                <h3>Realize o pagamento</h3>
+                <p>
+                    Receba a chave Pix pelo atendimento
+                    e efetue o pagamento de R$ 10,00.
+                </p>
+            </article>
+
+            <article class="step-card">
+                <div class="step-number">03</div>
+                <h3>Receba seu acesso</h3>
+                <p>
+                    Envie o comprovante e receba as orientações
+                    para entrar na plataforma.
+                </p>
+            </article>
+
+            <article class="step-card">
+                <div class="step-number">04</div>
+                <h3>Comece a estudar</h3>
+                <p>
+                    Acesse seus materiais, pratique questões
+                    e acompanhe seu desempenho.
+                </p>
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- OFERTA -->
+
+<section class="offer-section" id="investimento">
+
+    <div class="container offer-grid">
+
+        <div class="offer-text">
+
+            <span class="section-tag">Seu próximo passo começa aqui</span>
+
+            <h2>Invista na sua preparação por apenas R$ 10,00.</h2>
+
+            <p>
+                Tenha acesso à plataforma Preparatório ACS e utilize
+                os recursos disponíveis para organizar seus estudos,
+                praticar e acompanhar seu desempenho.
+            </p>
+
+            <div class="offer-benefits">
+
+                <div><span>✓</span> Materiais organizados por disciplina</div>
+
+                <div><span>✓</span> Questões e simulados</div>
+
+                <div><span>✓</span> Acompanhamento de desempenho</div>
+
+                <div><span>✓</span> Checklist de estudos</div>
+
+                <div><span>✓</span> Garantia de 7 dias</div>
+
+            </div>
+
+        </div>
+
+        <div class="price-card">
+
+            <div class="price-label">ACESSO À PLATAFORMA</div>
+
+            <div class="price-value">R$ 10,00</div>
+
+            <div class="price-description">
+                Pagamento único via Pix, combinado pelo WhatsApp.
+            </div>
+
+            <a href="https://wa.me/5589981267779?text=Ol%C3%A1%2C%20quero%20adquirir%20o%20acesso%20ao%20Preparat%C3%B3rio%20ACS%20por%20R%24%2010%2C00."
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn btn-primary">
+
+                Quero garantir meu acesso →
+
+            </a>
+
+            <div class="price-security">
+                🔒 Atendimento direto pelo WhatsApp
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- GARANTIA -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="guarantee">
+
+            <div class="guarantee-icon">🛡️</div>
+
+            <div>
+                <h3>Você tem 7 dias de garantia</h3>
+
+                <p>
+                    Se não ficar satisfeito com a plataforma, poderá
+                    solicitar a devolução do valor pelo mesmo WhatsApp
+                    em até 7 dias após o pagamento.
+                </p>
+            </div>
+
+        </div>
+
+        <p style="margin-top:18px;color:#8391a3;font-size:11px;line-height:1.7;">
+            O acesso é liberado manualmente pelo administrador.
+            O pagamento é combinado pelo WhatsApp. A plataforma
+            utiliza hospedagem estática e não confirma pagamentos
+            nem gerencia usuários de forma centralizada.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- CHAMADA FINAL -->
+
+<section class="final-cta">
+
+    <div class="container">
+
+        <span class="section-tag">Preparatório ACS • Canto do Buriti - PI</span>
+
+        <h2>Chegou a hora de levar sua preparação mais a sério.</h2>
+
+        <p>
+            Organize seus estudos, pratique seus conhecimentos
+            e acompanhe sua evolução. Dê o primeiro passo hoje.
+        </p>
+
+        <a href="https://wa.me/5589981267779?text=Ol%C3%A1%2C%20quero%20conhecer%20o%20Preparat%C3%B3rio%20ACS."
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn btn-primary">
+
+            Falar com o atendimento pelo WhatsApp →
+
+        </a>
+
+    </div>
+
+</section>
+
+<!-- RODAPÉ -->
+
+<footer class="footer">
+
+    <div class="container footer-content">
+
+        <div class="footer-brand">
+            🎓 Preparatório ACS
+        </div>
+
+        <p>
+            Canto do Buriti – PI | Todos os direitos reservados.
+        </p>
+
+        <a href="index.html" style="color:#c5d4e5;font-size:12px;">
+            Voltar ao início ↑
+        </a>
+
+    </div>
+
+</footer>
+
+<!-- WHATSAPP FLUTUANTE -->
+
+<a href="https://wa.me/5589981267779?text=Ol%C3%A1%2C%20quero%20conhecer%20o%20Preparat%C3%B3rio%20ACS."
+   target="_blank"
+   rel="noopener noreferrer"
+   class="whatsapp-float"
+   aria-label="Conversar pelo WhatsApp">
+
+    ☎
+
+</a>
+
+</body>
+</html>
